@@ -1,34 +1,39 @@
 <?php
-
-require 'database.php';
-
+require 'database.php'; // Include database connection
 
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+// Check if the user is already logged in
+if (isset($_SESSION['user_id'])) {
+    header('Location: welcome.php');  // Redirect if already logged in
+    exit();
+}
 
-    
-    $query = $conn->prepare("SELECT * FROM users WHERE email = ?");
-    $query->bind_param("s", $email);
-    $query->execute();
-    $result = $query->get_result();
+// Handle login form submission
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        
+    // Query to check if the user exists with the entered email
+    $query = "SELECT * FROM users WHERE email='$email' LIMIT 1";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+        $user = mysqli_fetch_assoc($result);
+
+        // Verify the password
         if (password_verify($password, $user['password'])) {
-            $_SESSION['loggedin'] = true;
-            $_SESSION['email'] = $user['email'];
-            
-            header("Location: welcome.php");
+            // If valid, store user information in session and redirect to welcome page
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['role'] = $user['role'];
+            header('Location: welcome.php');
             exit();
         } else {
-            $error_message = "Invalid email or password.";
+            $error = "Invalid password. Please try again.";
         }
     } else {
-        $error_message = "Invalid email or password.";
+        $error = "No user found with this email. Please check your credentials.";
     }
 }
 ?>
@@ -39,125 +44,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <style>
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #4CAF50, #3e8e41);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .form-container {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .form-box {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            padding: 30px;
-            text-align: center;
-        }
-
-        h2 {
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: #333;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 14px;
-            color: #555;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            margin-top: 5px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: #4CAF50;
-            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
-        }
-
-        .submit-btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .submit-btn:hover {
-            background-color: #45a049;
-        }
-
-        .redirect-link {
-            margin-top: 15px;
-            font-size: 14px;
-        }
-
-        .redirect-link a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-
-        .redirect-link a:hover {
-            text-decoration: underline;
-        }
-
-        .error-message {
-            color: red;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css"> <!-- Add your CSS stylesheet -->
 </head>
 <body>
-    <div class="form-container">
-        <div class="form-box">
-            <h2>Login</h2>
-            <?php
-            if (!empty($error_message)) {
-                echo "<p class='error-message'>$error_message</p>";
-            }
-            ?>
-            <form method="POST" action="">
-                <div class="input-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" placeholder="Enter your email" required>
-                </div>
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Enter your password" required>
-                </div>
-                <button type="submit" name="login" class="submit-btn">Login</button>
-            </form>
-            <p class="redirect-link">Don't have an account? <a href="register.php">Register here</a></p>
-        </div>
+    <div class="login-container">
+        <h1>Login</h1>
+        <?php
+        if (isset($error)) {
+            echo "<p style='color: red;'>$error</p>";
+        }
+        ?>
+        <form method="POST" action="login.php">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit">Login</button>
+            <p>Don't have an account? <a href="register.php">Register here</a></p>
+        </form>
     </div>
 </body>
 </html>
-
