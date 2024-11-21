@@ -12,7 +12,7 @@ try {
     // Establish connection
     $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
     // Display a success message (optional)
-    echo "Database connected successfully!";
+    echo " ";
 } catch (mysqli_sql_exception $e) {
     // Handle connection error
     echo "Could not connect to the database: " . $e->getMessage();
