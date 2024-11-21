@@ -195,6 +195,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <p>See more</p>
                       </div>
               </div>
+            <div class="box">
+                     <div class="box-content">
+                      <h2>Headphones & Musics</h2>
+                     <div class="box-img" style="background-image: url('box9_image.jpg');"></div>
+                     <p>See more</p>
+                     </div>
+               </div>
+              <div class="box">
+                     <div class="box-content">
+                     <h2>Get Your Games</h2>
+                     <div class="box-img" style="background-image: url('box10_image.jpg');"></div>
+                     <p>See more</p>
+                    </div>
+               </div>
+               <div class="box">
+                     <div class="box-content">
+                     <h2>Clean Your Home</h2>
+                     <div class="box-img" style="background-image: url('box11_image.jpg');"></div>
+                     <p>See more</p>
+                    </div>
+               </div>
+               <div class="box">
+                      <div class="box-contentair">
+                     <h2>Medicines</h2>
+                    <div class="box-img" style="background-image: url('box12_image.jpg');"></div>
+                    <p>See more</p>
+                    </div>
+             </div>
         </div>
 
         <footer>
@@ -204,7 +232,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="foot-panel2">
                 <div class="logo"></div>
-            </div>
+            </div> 
+            
+            <div class="foot-panel3">
+             <p class="accept-msg">We Accept</p>
+            <div class="payment-methods">
+            <img src="visa.png" alt="VISA" class="payment-logo">
+            <img src="master.png" alt="MasterCard" class="payment-logo">
+            <img src="nexuspay.png" alt="Nexus Pay" class="payment-logo">
+            <img src="bkash.png" alt="bKash" class="payment-logo">
+            <img src="rocket.png" alt="Rocket" class="payment-logo">
+            <img src="nagad.png" alt="Nagad" class="payment-logo">
+        </div>
+                Back To Top
+          </div>
         </footer>
 
         <script>
