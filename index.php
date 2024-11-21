@@ -2,16 +2,16 @@
 require 'database.php';
 ?>
 
+<?php
 session_start();
 
-
 if (isset($_SESSION['user_id'])) {
-    header('Location: welcome.php');     exit();
+    header('Location: welcome.php');
+    exit();
 }
 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if (isset($_POST['register'])) {
+    if (isset($_POST['register'])) {
         $name = mysqli_real_escape_string($conn, $_POST['name']);
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $password = mysqli_real_escape_string($conn, $_POST['password']);
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $result = mysqli_query($conn, $check_email_query);
 
         if (mysqli_num_rows($result) > 0) {
-            echo "<p>Email already exists. Please use a different one.</p>";
+            echo "<p style='color: red;'>Email already exists. Please use a different one.</p>";
         } else {
             $query = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password_hashed')";
             if (mysqli_query($conn, $query)) {
@@ -28,12 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 header('Location: welcome.php'); 
                 exit();
             } else {
-                echo "<p>Error in registration. Please try again.</p>";
+                echo "<p style='color: red;'>Error in registration. Please try again.</p>";
             }
         }
     }
 
-    
     if (isset($_POST['login'])) {
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $password = mysqli_real_escape_string($conn, $_POST['password']);
@@ -48,14 +47,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 header('Location: welcome.php'); 
                 exit();
             } else {
-                echo "<p>Invalid password. Please try again.</p>";
+                echo "<p style='color: red;'>Invalid password. Please try again.</p>";
             }
         } else {
-            echo "<p>No user found with this email. Please check your credentials.</p>";
+            echo "<p style='color: red;'>No user found with this email. Please check your credentials.</p>";
         }
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -122,6 +122,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="panel-deals border">
                     Shop deals in Electronics
+                </div>
+        
+                <div class="form-container">
+                    <form method="POST" action="index.php">
+                        <h2>Register</h2>
+                        <input type="text" name="name" placeholder="Name" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <button type="submit" name="register">Register</button>
+                    </form>
+
+                    <form method="POST" action="index.php">
+                        <h2>Login</h2>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <button type="submit" name="login">Login</button>
+                    </form>
                 </div>
             </div>
 
