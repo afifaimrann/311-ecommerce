@@ -124,23 +124,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     Shop deals in Electronics
                 </div>
         
-                <div class="form-container">
-                    <form method="POST" action="index.php">
-                        <h2>Register</h2>
-                        <input type="text" name="name" placeholder="Name" required>
-                        <input type="email" name="email" placeholder="Email" required>
-                        <input type="password" name="password" placeholder="Password" required>
-                        <button type="submit" name="register">Register</button>
-                    </form>
-
-                    <form method="POST" action="index.php">
-                        <h2>Login</h2>
-                        <input type="email" name="email" placeholder="Email" required>
-                        <input type="password" name="password" placeholder="Password" required>
-                        <button type="submit" name="login">Login</button>
-                    </form>
+               <!-- Register and Login Links -->
+               <div class="auth-buttons">
+                    <a href="register.php"><button>Register</button></a>
+                    <a href="login.php"><button>Login</button></a>
                 </div>
-            </div>
+        </div>
 
         </header>
         <div class="hero-section">
@@ -217,5 +206,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="logo"></div>
             </div>
         </footer>
+
+        <script>
+        function toggleForm(formType) {
+            // Hide both forms initially
+            document.getElementById('register-form').style.display = 'none';
+            document.getElementById('login-form').style.display = 'none';
+
+            // Show the selected form
+            if (formType === 'register') {
+                document.getElementById('register-form').style.display = 'block';
+            } else if (formType === 'login') {
+                document.getElementById('login-form').style.display = 'block';
+            }
+        }
+    </script>
     </body>
 </html>
