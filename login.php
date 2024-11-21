@@ -4,18 +4,18 @@ session_start(); // Start session for user management
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Capture and sanitize form inputs
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = $_POST['password']; // Don't hash it yet; we'll verify it first.
 
     // Validate if all fields are filled
-    if (empty($username) || empty($password)) {
+    if (empty($email) || empty($password)) {
         die("All fields are required.");
     }
 
     // Check for the user in the database
-    $query = "SELECT * FROM users WHERE username = ?";
+    $query = "SELECT * FROM users WHERE email = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("s", $username);
+    $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -26,14 +26,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (password_verify($password, $user['password'])) {
             // Set session variables and redirect to welcome page
             $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
+            $_SESSION['email'] = $user['email']; // You can use email or name based on your need
             header('Location: welcome.php');
             exit();
         } else {
             echo "Invalid password.";
         }
     } else {
-        echo "Username does not exist.";
+        echo "Email does not exist.";
     }
 }
 ?>
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="login-container">
         <h2>Login</h2>
         <form method="POST" action="">
-            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
