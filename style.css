@@ -250,3 +250,12 @@ table th, table td {
 table th {
     background-color: #946565;
 }
+button {
+    padding: 20px 40px;
+    margin: 5px;
+    background-color: #1b5c62;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
