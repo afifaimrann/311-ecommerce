@@ -190,7 +190,6 @@ if (isset($_SESSION['user_id'])) {
             </div> 
             
             <div class="foot-panel3">
-            <div class="visa"></div>
           </div>
    </footer>
  <script>
