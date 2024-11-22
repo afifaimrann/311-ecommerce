@@ -54,25 +54,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             height: 100vh;
             margin: 0;
         }
-        .login-container {
+        .signin-container {
             background-color: white;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 300px;
         }
-        .login-container h2 {
+        .signin-container h2 {
             margin-bottom: 20px;
             text-align: center;
         }
-        .login-container input {
+        .signin-container input {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ddd;
             border-radius: 4px;
         }
-        .login-container button {
+        .signin-container button {
             width: 100%;
             padding: 10px;
             background-color: #4CAF50;
@@ -81,18 +81,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             border-radius: 4px;
             cursor: pointer;
         }
-        .login-container button:hover {
+        .signin-container button:hover {
             background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Login</h2>
+    <div class="signin-container">
+        <h2>Signin</h2>
         <form method="POST" action="">
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Login</button>
+            <button type="submit">Signin</button>
         </form>
     </div>
 </body>

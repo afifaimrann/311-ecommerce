@@ -9,51 +9,6 @@ if (isset($_SESSION['user_id'])) {
     header('Location: welcome.php');
     exit();
 }
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['register'])) {
-        $name = mysqli_real_escape_string($conn, $_POST['name']);
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $password = mysqli_real_escape_string($conn, $_POST['password']);
-        $password_hashed = password_hash($password, PASSWORD_DEFAULT); 
-        $check_email_query = "SELECT * FROM users WHERE email='$email'";
-        $result = mysqli_query($conn, $check_email_query);
-
-        if (mysqli_num_rows($result) > 0) {
-            echo "<p style='color: red;'>Email already exists. Please use a different one.</p>";
-        } else {
-            $query = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password_hashed')";
-            if (mysqli_query($conn, $query)) {
-                $_SESSION['user_id'] = mysqli_insert_id($conn); 
-                header('Location: welcome.php'); 
-                exit();
-            } else {
-                echo "<p style='color: red;'>Error in registration. Please try again.</p>";
-            }
-        }
-    }
-
-    if (isset($_POST['login'])) {
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $password = mysqli_real_escape_string($conn, $_POST['password']);
-
-        $query = "SELECT * FROM users WHERE email='$email'";
-        $result = mysqli_query($conn, $query);
-
-        if (mysqli_num_rows($result) > 0) {
-            $user = mysqli_fetch_assoc($result);
-            if (password_verify($password, $user['password'])) {
-                $_SESSION['user_id'] = $user['id']; 
-                header('Location: welcome.php'); 
-                exit();
-            } else {
-                echo "<p style='color: red;'>Invalid password. Please try again.</p>";
-            }
-        } else {
-            echo "<p style='color: red;'>No user found with this email. Please check your credentials.</p>";
-        }
-    }
-}
 ?>
 
 
@@ -61,8 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
-        <meta name="viewport" content="width=device-width, intial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <title>Amazon</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="style.css">
@@ -132,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                <!-- Register and Login Links -->
                <div class="auth-buttons">
                     <a href="register.php"><button>Register</button></a>
-                    <a href="login.php"><button>Login</button></a>
+                    <a href="signin.php"><button>Signin</button></a>
                 </div>
         </div>
 
@@ -148,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <div class="box-content">
                 <h2> Garments</h2>
                 <div class="box-img" style="background-image: url('box1_image.jpg');"></div>
-                <a href="Garments.php?category_id=1"><p>See more</p></a>
+                <p>See more</p>
               </div>
             </div>
             <div class="box">
@@ -200,6 +155,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <p>See more</p>
                       </div>
               </div>
+            <div class="box">
+                     <div class="box-content">
+                      <h2>Headphones & Musics</h2>
+                     <div class="box-img" style="background-image: url('box9_image.jpg');"></div>
+                     <p>See more</p>
+                     </div>
+               </div>
+              <div class="box">
+                     <div class="box-content">
+                     <h2>Get Your Games</h2>
+                     <div class="box-img" style="background-image: url('box10_image.jpg');"></div>
+                     <p>See more</p>
+                    </div>
+               </div>
+               <div class="box">
+                     <div class="box-content">
+                     <h2>Clean Your Home</h2>
+                     <div class="box-img" style="background-image: url('box11_image.jpg');"></div>
+                     <p>See more</p>
+                    </div>
+               </div>
+               <div class="box">
+                      <div class="box-content">
+                     <h2>Medicines</h2>
+                    <div class="box-img" style="background-image: url('box12_image.jpg');"></div>
+                    <p>See more</p>
+                    </div>
+             </div>
         </div>
 
         <footer>
@@ -209,20 +192,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="foot-panel2">
                 <div class="logo"></div>
+            </div> 
+            <div class="foot-panel3">
+                <div class="visa"></div>
             </div>
-        </footer>
-
-        <script>
+   </footer>
+ <script>
         function toggleForm(formType) {
             // Hide both forms initially
             document.getElementById('register-form').style.display = 'none';
-            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('signin-form').style.display = 'none';
 
             // Show the selected form
             if (formType === 'register') {
                 document.getElementById('register-form').style.display = 'block';
-            } else if (formType === 'login') {
-                document.getElementById('login-form').style.display = 'block';
+            } else if (formType === 'signin') {
+                document.getElementById('signin-form').style.display = 'block';
             }
         }
     </script>
