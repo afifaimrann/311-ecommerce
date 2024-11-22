@@ -1,7 +1,7 @@
 *{
     margin: 0;
     font-family: Arial;
-    border: border-box;
+    box-sizing: border-box;
 }
 .navbar {
     height: 60px;
@@ -205,8 +205,18 @@ footer {
 }
 
 .foot-panel3{
-    background-color:  #043417;
+    background-color: #043417;
     color: white;
     border-top: 0.5px solid white;
-
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+.visa {
+    background-color: red; /* Add color to make it visible */
+    height: 50px;
+    width: 70px;
 }
