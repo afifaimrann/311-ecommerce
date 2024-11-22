@@ -61,10 +61,13 @@ if (isset($_SESSION['user_id'])) {
                 <p class="nav-second">& Orders</p>
             </div>
 
-            <div class="nav-cart border ">
+           <!-- Cart -->
+            <div class="nav-cart border">
+                <a href="cart.php">
                 <i class="fa-solid fa-cart-shopping"></i>
-                Cart
-            </div>
+               Cart (<span id="cart-count">0</span>)
+                 </a>
+            </div> 
 
             <div class="nav-payment border ">
                 <i class="fa-solid fa-money-bill"></i>
