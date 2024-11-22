@@ -235,17 +235,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div> 
             
             <div class="foot-panel3">
-             <p class="accept-msg">We Accept</p>
-            <div class="payment-methods">
-            <img src="visa.png" alt="VISA" class="payment-logo">
-            <img src="master.png" alt="MasterCard" class="payment-logo">
-            <img src="nexuspay.png" alt="Nexus Pay" class="payment-logo">
-            <img src="bkash.png" alt="bKash" class="payment-logo">
-            <img src="rocket.png" alt="Rocket" class="payment-logo">
-            <img src="nagad.png" alt="Nagad" class="payment-logo">
-        </div>
-                Back To Top
-          </div>
+    <div class="payment-logo visa"></div>
+    <div class="payment-logo master"></div>
+    <div class="payment-logo nexuspay"></div>
+    <div class="payment-logo bkash"></div>
+    <div class="payment-logo rocket"></div>
+    <div class="payment-logo nagad"></div>
+</div>
+
         </footer>
 
         <script>
