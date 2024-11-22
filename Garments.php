@@ -54,7 +54,7 @@ try{
                 echo '      <button type="submit">Add to Cart</button>';
                 echo '  </form>';
                 echo '</div>';
-                echo '</div>';
+        
             }
         } else {
             echo '<p>No products available in this category.</p>';
