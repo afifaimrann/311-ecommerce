@@ -204,6 +204,15 @@ footer {
     width: 100px;
 }
 
+.product-list 
+{ display: flex; flex-wrap: wrap; gap: 20px; }
+
+.product
+{ border: 1px solid #ccc; padding: 20px; width: 200px; text-align: center; }
+
+.product-img
+{ width: 100%; height: 150px; background-size: cover; background-position: center; }
+
 .foot-panel3{
     background-color: #043417;
     color: white;
