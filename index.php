@@ -241,9 +241,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="payment-logo bkash"></div>
     <div class="payment-logo rocket"></div>
     <div class="payment-logo nagad"></div>
-</div>
-
-        </footer>
+  </div>
+ </footer>
 
         <script>
         function toggleForm(formType) {
