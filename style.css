@@ -211,14 +211,16 @@ footer {
     padding: 10px 0; 
     border-top: 0.5px solid white; 
     height: 70px; 
+    gap :15px;
 }
 
 .payment-logo {
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
     height: 50px; 
     width: 70px; 
-    margin: 0 10px; 
+    m 
 }
 
 .payment-logo.visa {
