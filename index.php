@@ -9,51 +9,6 @@ if (isset($_SESSION['user_id'])) {
     header('Location: welcome.php');
     exit();
 }
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['register'])) {
-        $name = mysqli_real_escape_string($conn, $_POST['name']);
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $password = mysqli_real_escape_string($conn, $_POST['password']);
-        $password_hashed = password_hash($password, PASSWORD_DEFAULT); 
-        $check_email_query = "SELECT * FROM users WHERE email='$email'";
-        $result = mysqli_query($conn, $check_email_query);
-
-        if (mysqli_num_rows($result) > 0) {
-            echo "<p style='color: red;'>Email already exists. Please use a different one.</p>";
-        } else {
-            $query = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password_hashed')";
-            if (mysqli_query($conn, $query)) {
-                $_SESSION['user_id'] = mysqli_insert_id($conn); 
-                header('Location: welcome.php'); 
-                exit();
-            } else {
-                echo "<p style='color: red;'>Error in registration. Please try again.</p>";
-            }
-        }
-    }
-
-    if (isset($_POST['login'])) {
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $password = mysqli_real_escape_string($conn, $_POST['password']);
-
-        $query = "SELECT * FROM users WHERE email='$email'";
-        $result = mysqli_query($conn, $query);
-
-        if (mysqli_num_rows($result) > 0) {
-            $user = mysqli_fetch_assoc($result);
-            if (password_verify($password, $user['password'])) {
-                $_SESSION['user_id'] = $user['id']; 
-                header('Location: welcome.php'); 
-                exit();
-            } else {
-                echo "<p style='color: red;'>Invalid password. Please try again.</p>";
-            }
-        } else {
-            echo "<p style='color: red;'>No user found with this email. Please check your credentials.</p>";
-        }
-    }
-}
 ?>
 
 
@@ -243,8 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="payment-logo nagad"></div>
   </div>
  </footer>
-
-        <script>
+ <script>
         function toggleForm(formType) {
             // Hide both forms initially
             document.getElementById('register-form').style.display = 'none';
