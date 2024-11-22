@@ -196,13 +196,13 @@ if (isset($_SESSION['user_id'])) {
         function toggleForm(formType) {
             // Hide both forms initially
             document.getElementById('register-form').style.display = 'none';
-            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('signin-form').style.display = 'none';
 
             // Show the selected form
             if (formType === 'register') {
                 document.getElementById('register-form').style.display = 'block';
-            } else if (formType === 'login') {
-                document.getElementById('login-form').style.display = 'block';
+            } else if (formType === 'signin') {
+                document.getElementById('signin-form').style.display = 'block';
             }
         }
     </script>
