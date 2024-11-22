@@ -204,6 +204,7 @@ footer {
     width: 100px;
 }
 .foot-panel3 {
+    z-index: 10;
     background-color: #043417; 
     display: flex;
     justify-content: center; 
