@@ -193,9 +193,16 @@ if (isset($_SESSION['user_id'])) {
             <div class="foot-panel2">
                 <div class="logo"></div>
             </div> 
-            <div class="foot-panel3">
-                <div class="visa"></div>
-            </div>
+            div class="foot-panel3">
+             <p class="accept-msg">We Accept</p>
+            <div class="payment-methods">
+            <img src="visa.png" alt="VISA" class="payment-logo">
+            <img src="master.png" alt="MasterCard" class="payment-logo">
+            <img src="nexuspay.png" alt="Nexus Pay" class="payment-logo">
+            <img src="bkash.png" alt="bKash" class="payment-logo">
+            <img src="rocket.png" alt="Rocket" class="payment-logo">
+            <img src="nagad.png" alt="Nagad" class="payment-logo">
+        </div>
    </footer>
  <script>
         function toggleForm(formType) {
