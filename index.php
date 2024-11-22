@@ -188,7 +188,9 @@ if (isset($_SESSION['user_id'])) {
             <div class="foot-panel2">
                 <div class="logo"></div>
             </div> 
-            
+            <div class="foot-panel3">
+                <div class="visa"></div>
+            </div>
    </footer>
  <script>
         function toggleForm(formType) {
