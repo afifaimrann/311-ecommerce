@@ -1,5 +1,6 @@
 <?php
 require 'database.php'; // Include the database connection file
+session_start(); // Start session to manage cart (CHANGED: Added session start here)
 $categoryId = isset($_GET['category_id']) ? (int) $_GET['category_id'] : 0;
 
 if ($categoryId == 0) {
