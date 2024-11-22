@@ -217,7 +217,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                </div>
                <div class="box">
-                      <div class="box-contentair">
+                      <div class="box-content">
                      <h2>Medicines</h2>
                     <div class="box-img" style="background-image: url('box12_image.jpg');"></div>
                     <p>See more</p>
