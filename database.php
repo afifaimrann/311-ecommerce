@@ -15,7 +15,7 @@ try {
     echo " ";
 } catch (mysqli_sql_exception $e) {
     // Handle connection error
-    echo "Could not connect to the database: " . $e->getMessage();
+    echo "Could not connect: " . $e->getMessage();
     exit(); // Stop further execution if connection fails
 }
 

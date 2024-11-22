@@ -106,6 +106,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <i class="fa-solid fa-cart-shopping"></i>
                 Cart
             </div>
+
+            <div class="nav-payment border ">
+                <i class="fa-solid fa-money-bill"></i>
+                Payment Method
+            </div>
        </div>
 
             <div class="panel ">
@@ -143,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <div class="box-content">
                 <h2> Garments</h2>
                 <div class="box-img" style="background-image: url('box1_image.jpg');"></div>
-                <p>See more</p>
+                <a href="Garments.php?category_id=1"><p>See more</p></a>
               </div>
             </div>
             <div class="box">
