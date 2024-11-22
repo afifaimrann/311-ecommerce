@@ -23,6 +23,44 @@ try{
     $products = $resultProducts->fetch_all(MYSQLI_ASSOC);
 } catch (mysqli_sql_exception $e) {
     echo "Error: " . $e->getMessage();
+} // CHANGED: Handle adding products to cart directly in this file
+if (isset($_POST['add_to_cart'])) {
+    $product_id = $_POST['product_id'];
+    $product_name = $_POST['product_name'];
+    $product_price = $_POST['product_price'];
+    $product_image = $_POST['product_image'];
+    $quantity = (int) $_POST['quantity'];
+
+    // Initialize cart if not exists
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
+    }
+
+    // Check if product already exists in cart
+    $found = false;
+    foreach ($_SESSION['cart'] as &$item) {
+        if ($item['id'] == $product_id) {
+            $item['quantity'] += $quantity; // Update quantity
+            $item['total'] = $item['quantity'] * $item['price']; // Update total
+            $found = true;
+            break;
+        }
+    }
+
+    // If the product is not in the cart, add it
+    if (!$found) {
+        $_SESSION['cart'][] = [
+            "id" => $product_id,
+            "name" => $product_name,
+            "price" => $product_price,
+            "quantity" => $quantity,
+            "total" => $product_price * $quantity,
+            "image" => $product_image
+        ];
+    }
+
+    // Display a success message
+    echo "<p style='color: green;'>Product added to cart successfully!</p>";
 }
 ?>
 <!DOCTYPE html>
@@ -46,7 +84,7 @@ try{
                 echo '  <p>Price: $' . htmlspecialchars($product['price']) . '</p>';
                 echo '  <p>In stock :' . htmlspecialchars($product['stock_quantity']) . '</p>';
             
-                echo '  <form method="POST" action="add_to_cart.php">';
+                echo '  <form method="POST" action=" ">'; //changed here
                 echo '      <input type="hidden" name="product_id" value="' . htmlspecialchars($product['id']) . '">';
                 echo '      <input type="hidden" name="product_name" value="' . htmlspecialchars($product['name']) . '">';
                 echo '      <input type="hidden" name="product_price" value="' . htmlspecialchars($product['price']) . '">';
@@ -62,5 +100,7 @@ try{
         }
         ?>
     </div>
+<!-- CHANGED: Added link to go to the cart -->
+    <a href="cart.php">Go to Cart</a>
 </body>
 </html>
