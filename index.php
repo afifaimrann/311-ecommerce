@@ -82,7 +82,7 @@ if (isset($_SESSION['user_id'])) {
                <!-- Register and Login Links -->
                <div class="auth-buttons">
                     <a href="register.php"><button>Register</button></a>
-                    <a href="login.php"><button>Login</button></a>
+                    <a href="signin.php"><button>Signin</button></a>
                 </div>
         </div>
 
