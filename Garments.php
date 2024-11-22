@@ -44,6 +44,16 @@ try{
                 echo '  <p>' . htmlspecialchars($product['description']) . '</p>';
                 echo '  <p>Price: $' . htmlspecialchars($product['price']) . '</p>';
                 echo '  <p>In stock :' . htmlspecialchars($product['stock_quantity']) . '</p>';
+                
+                 echo '  <form method="POST" action="add_to_cart.php">';
+                echo '      <input type="hidden" name="product_id" value="' . htmlspecialchars($product['id']) . '">';
+                echo '      <input type="hidden" name="product_name" value="' . htmlspecialchars($product['name']) . '">';
+                echo '      <input type="hidden" name="product_price" value="' . htmlspecialchars($product['price']) . '">';
+                echo '      <input type="hidden" name="product_image" value="' . htmlspecialchars($product['image']) . '">';
+                echo '      <input type="number" name="quantity" value="1" min="1" max="' . htmlspecialchars($product['stock_quantity']) . '">';
+                echo '      <button type="submit">Add to Cart</button>';
+                echo '  </form>';
+                echo '</div>';
                 echo '</div>';
             }
         } else {
