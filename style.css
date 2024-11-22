@@ -259,3 +259,14 @@ button {
     cursor: pointer;
     border-radius: 5px;
 }
+button:hover {
+    background-color: #005a63;
+}
+.auth-buttons {
+    display: flex;
+    gap: 15px; /* Added gap to ensure proper spacing between Register and SignIn buttons */
+}
+
+.auth-buttons a {
+    text-decoration: none;  
+}
