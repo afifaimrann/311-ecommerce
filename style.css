@@ -282,4 +282,17 @@ button:hover {
 
 .auth-buttons button:hover {
     background-color: #005a63;
+}  
+
+
+/* Optional: Add responsive design for better display on smaller screens */
+@media (max-width: 600px) {
+    table {
+        font-size: 14px;
+    }
+
+    button {
+        width: 100%;
+    }
 }
+
