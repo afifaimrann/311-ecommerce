@@ -209,44 +209,11 @@ footer {
     justify-content: center; 
     align-items: center; 
     border-top: 0.5px solid white; 
-    min-height: 70px; 
+    height: 70px; 
 }
-.payment-logo {
-    background-color: rgba(255, 0, 0, 0.5); 
+.visa {
+    background-image:url("visa.png");
+    background-size: cover;
     height: 50px;
     width: 100px;
-    margin: 0 10px; 
 }
-
-
-.payment-logo.visa {
-    background-image: url("visa.png");
-    background-size: cover;
-    
-}
-.payment-logo.master {
-    background-image: url("master.png");
-    background-size: cover;
-
-}
-.payment-logo.nexuspay {
-    background-image: url("nexuspay.png");
-    background-size: cover;
-   
-}
-.payment-logo.bkash {
-    background-image: url("bkash.png");
-    background-size: cover;
-    
-}
-.payment-logo.rocket {
-    background-image: url("rocket.png");
-    background-size: cover;
-    
-}
-.payment-logo.nagad {
-    background-image: url("nagad.png");
-    background-size: cover;
-   
-}
-

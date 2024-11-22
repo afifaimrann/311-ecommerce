@@ -190,14 +190,9 @@ if (isset($_SESSION['user_id'])) {
             </div> 
             
             <div class="foot-panel3">
-    <div class="payment-logo visa"></div>
-    <div class="payment-logo master"></div>
-    <div class="payment-logo nexuspay"></div>
-    <div class="payment-logo bkash"></div>
-    <div class="payment-logo rocket"></div>
-    <div class="payment-logo nagad"></div>
-  </div>
- </footer>
+            <div class="visa"></div>
+          </div>
+   </footer>
  <script>
         function toggleForm(formType) {
             // Hide both forms initially
