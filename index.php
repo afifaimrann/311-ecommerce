@@ -210,8 +210,7 @@ if (isset($_SESSION['user_id'])) {
             <img src="rocket.png" alt="Rocket" class="payment-logo">
             <img src="nagad.png" alt="Nagad" class="payment-logo">
         </div>
-                Back To Top
-          </div>
+                 
         </footer>
  <script>
         function toggleForm(formType) {
