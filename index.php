@@ -4,11 +4,7 @@ require 'database.php';
 
 <?php
 session_start();
-
-if (isset($_SESSION['user_id'])) {
-    header('Location: welcome.php');
-    exit();
-} if (isset($_POST['clear_cart'])) {
+ if (isset($_POST['clear_cart'])) {
     $_SESSION['cart'] = [];
     header("Location: index.php"); // Redirect to the front page
     exit();
