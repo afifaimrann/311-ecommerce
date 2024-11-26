@@ -208,7 +208,7 @@ if (isset($_SESSION['user_id'])) {
             <img src="nexuspay.png" alt="Nexus Pay" class="payment-logo">
             <img src="bkash.png" alt="bKash" class="payment-logo">
             <img src="rocket.png" alt="Rocket" class="payment-logo">
-            <img src="nagad.png" alt="Nagad" class="payment-logo">
+            <img src="nagad.png" alt="Nagad" class="payment-logo"></div>
         </div>
                  
         </footer>
