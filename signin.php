@@ -1,4 +1,4 @@
-<?php
+s<?php
 require 'database.php'; // Include the database connection file
 session_start(); // Start session for user management
 
