@@ -9,6 +9,11 @@ if (isset($_SESSION['user_id'])) {
     header('Location: welcome.php');
     exit();
 }
+if (isset($_POST['clear_cart'])) {
+    $_SESSION['cart'] = [];
+    header("Location: index.php"); // Redirect to the front page
+    exit();
+}
 ?>
 
 
@@ -28,9 +33,9 @@ if (isset($_SESSION['user_id'])) {
                 <div class="nav-logo border">
                     <div class="logo"></div>
                 </div>
-
+                
                 <div class="nav-address border">
-                    <p class="add-first"> Deliver to</p>
+                    <p class="add-first"> Deliver to  </p>
                     <div class="add-icon">
                         <i class="fa-solid fa-location-dot"></i>
                         <p class="add-second">Bangladesh</p>
@@ -56,11 +61,13 @@ if (isset($_SESSION['user_id'])) {
                 <p><span>Returns</span></p>
                 <p class="nav-second">& Orders</p>
             </div>
-
-            <div class="nav-cart border ">
+                <!-- Cart -->
+            <div class="nav-cart border">
+                <a href="cart.php">
                 <i class="fa-solid fa-cart-shopping"></i>
-                Cart
-            </div>
+               Cart (<span id="cart-count">0</span>)
+                 </a>
+            </div> 
 
             <div class="nav-payment border ">
                 <i class="fa-solid fa-money-bill"></i>
@@ -193,9 +200,18 @@ if (isset($_SESSION['user_id'])) {
             <div class="foot-panel2">
                 <div class="logo"></div>
             </div> 
+
             <div class="foot-panel3">
-                <div class="visa"></div>
-            </div>
+             <p class="accept-msg">We Accept</p>
+            <div class="payment-methods">
+            <img src="visa.png" alt="VISA" class="payment-logo">
+            <img src="master.png" alt="MasterCard" class="payment-logo">
+            <img src="nexuspay.png" alt="Nexus Pay" class="payment-logo">
+            <img src="bkash.png" alt="bKash" class="payment-logo">
+            <img src="rocket.png" alt="Rocket" class="payment-logo">
+            <img src="nagad.png" alt="Nagad" class="payment-logo"></div>
+        </div>
+                 
    </footer>
  <script>
         function toggleForm(formType) {

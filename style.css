@@ -203,8 +203,101 @@ footer {
     height: 50px;
     width: 100px;
 }
+.foot-panel3 {
+    
+    text-align: center;
+    padding: 10px;
+    
+     
+}
+
+.accept-msg {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;  
+}
+
+.payment-methods {
+    display: flex;
+    justify-content: center; 
+    gap: 15px; 
+    flex-wrap: wrap; 
+}
+
+.payment-logo {
+    height: 40px; 
+    width: auto; 
+    object-fit: contain; 
+}
 .product-list { display: flex; flex-wrap: wrap; gap: 20px; }
 
 .product { border: 1px solid #ccc; padding: 20px; width: 200px; text-align: center; }
 
 .product-img { width: 100%; height: 150px; background-size: cover; background-position: center; }
+
+
+/* Styles for the cart table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #6d1a1a;
+    padding: 10px;
+    text-align: center;
+}
+
+table th {
+    background-color: #946565;
+}
+
+ 
+button {
+    padding: 20px 40px;
+    margin: 5px;
+    background-color: #1b5c62;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #005a63;
+}
+.auth-buttons {
+    display: flex;
+    gap: 15px; /* Added gap to ensure proper spacing between Register and SignIn buttons */
+}
+
+.auth-buttons a {
+    text-decoration: none;  
+}
+
+.auth-buttons button {
+    padding: 10px 20px;
+    background-color: #007185;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.auth-buttons button:hover {
+    background-color: #005a63;
+}
+
+/* Optional: Add responsive design for better display on smaller screens */
+@media (max-width: 600px) {
+    table {
+        font-size: 14px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
