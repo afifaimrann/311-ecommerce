@@ -34,7 +34,7 @@ if (isset($_SESSION['user_id'])) {
                 </div>
 
                 <div class="nav-address border">
-                    <p class="add-first"> Deliver to <All-Over></All-Over></p>
+                    <p class="add-first"> Deliver to </p>
                     <div class="add-icon">
                         <i class="fa-solid fa-location-dot"></i>
                         <p class="add-second">Bangladesh</p>
