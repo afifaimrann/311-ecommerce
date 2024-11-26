@@ -254,14 +254,14 @@ table th {
 button {
     padding: 20px 40px;
     margin: 5px;
-    background-color: #1b5c62;
+    background-color: #45945e;
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 5px;
 }
 button:hover {
-    background-color: #005a63;
+    background-color: #b4c3c4;
 }
 .auth-buttons {
     display: flex;
@@ -273,7 +273,7 @@ button:hover {
 }
 .auth-buttons button {
     padding: 10px 20px;
-    background-color: #007185;
+    background-color: #45945e;
     color: white;
     border: none;
     border-radius: 5px;
@@ -282,9 +282,29 @@ button:hover {
 }
 
 .auth-buttons button:hover {
-    background-color: #005a63;
+    background-color: #45945e;
 }  
 
+.nav-signin {
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+.nav-signin p {
+    margin: 0;
+    padding-right: 10px;
+}
+.nav-signin button {
+    background-color: #489c6b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.nav-signin button:hover {
+    background-color: #45a049;
+}
 
 /* Optional: Add responsive design for better display on smaller screens */
 @media (max-width: 600px) {

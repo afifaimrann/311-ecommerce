@@ -5,10 +5,7 @@ require 'database.php';
 <?php
 session_start();
 
-if (isset($_SESSION['user_id'])) {
-    header('Location: welcome.php');
-    exit();
-} if (isset($_POST['clear_cart'])) {
+ if (isset($_POST['clear_cart'])) {
     $_SESSION['cart'] = [];
     header("Location: index.php"); // Redirect to the front page
     exit();
@@ -22,7 +19,7 @@ if (isset($_SESSION['user_id'])) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <title>Amazon</title>
+        <title>Amar Bazaar</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="style.css">
     </head>
@@ -51,10 +48,17 @@ if (isset($_SESSION['user_id'])) {
                     </div>
                 </div>
 
-            <div class="nav-signin border">
-                <p><span>Hello,sign in</span></p>
-                <p class="nav-second">Account & Lists</p>
+                <div class="nav-signin border">
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <p><span>Hello, <?php echo htmlspecialchars($_SESSION['username']); ?></span></p>
+                    <form action="logout.php" method="POST" style="display: inline;">
+                        <button type="submit">Logout</button>
+                    </form>
+                    <?php else: ?>
+                    <p><span>Hello, sign in</span></p>
+                <?php endif; ?>
             </div>
+
 
             <div class="nav-return border">
                 <p><span>Returns</span></p>
