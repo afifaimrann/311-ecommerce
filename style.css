@@ -204,11 +204,8 @@ footer {
     width: 100px;
 }
 .foot-panel3 {
-    
     text-align: center;
     padding: 10px;
-    
-     
 }
 
 .accept-msg {
@@ -236,7 +233,6 @@ footer {
 
 .product-img { width: 100%; height: 150px; background-size: cover; background-position: center; }
 
-
 /* Styles for the cart table */
 table {
     width: 100%;
@@ -254,7 +250,6 @@ table th {
     background-color: #946565;
 }
 
- 
 button {
     padding: 20px 40px;
     margin: 5px;
@@ -276,7 +271,6 @@ button:hover {
 .auth-buttons a {
     text-decoration: none;  
 }
-
 .auth-buttons button {
     padding: 10px 20px;
     background-color: #007185;

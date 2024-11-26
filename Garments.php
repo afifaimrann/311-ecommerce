@@ -1,6 +1,6 @@
 <?php
 require 'database.php'; // Include the database connection file
-session_start(); // Start session to manage cart (CHANGED: Added session start here)
+session_start(); // Start session to manage cart
 
 $categoryId = isset($_GET['category_id']) ? (int) $_GET['category_id'] : 0;
 
@@ -32,7 +32,7 @@ try {
     echo "Error: " . $e->getMessage();
 }
 
-// CHANGED: Handle adding products to cart directly in this file
+// Handle adding products to cart directly in this file
 if (isset($_POST['add_to_cart'])) {
     $product_id = $_POST['product_id'];
     $product_name = $_POST['product_name'];
@@ -92,8 +92,6 @@ if (isset($_POST['add_to_cart'])) {
                 echo '  <p>' . htmlspecialchars($product['description']) . '</p>';
                 echo '  <p>Price: $' . htmlspecialchars($product['price']) . '</p>';
                 echo '  <p>In stock :' . htmlspecialchars($product['stock_quantity']) . '</p>';
-
-                // CHANGED: Action is empty to stay on the same page
                 echo '  <form method="POST" action="">';
                 echo '      <input type="hidden" name="product_id" value="' . htmlspecialchars($product['id']) . '">';
                 echo '      <input type="hidden" name="product_name" value="' . htmlspecialchars($product['name']) . '">';
@@ -110,7 +108,6 @@ if (isset($_POST['add_to_cart'])) {
         ?>
     </div>
 
-    <!-- CHANGED: Added link to go to the cart -->
     <a href="cart.php">Go to Cart</a>
 </body>
 </html>
