@@ -9,5 +9,17 @@ if (!isset($_SESSION['user_id'])) {
 
 // Welcome message
 $username = $_SESSION['username']; 
-echo "<h1>Welcome, $username!</h1>";
+$email = $_SESSION['email'];
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+</head>
+<body>
+    <h1>Welcome, <?php echo htmlspecialchars($username); ?>!</h1>
+    <p>Your email: <?php echo htmlspecialchars($email); ?></p>
+</body>
+</html>

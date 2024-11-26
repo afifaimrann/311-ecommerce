@@ -26,8 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (password_verify($password, $user['password'])) {
             // Set session variables and redirect to welcome page
             $_SESSION['user_id'] = $user['id'];
-            $_SESSION['email'] = $user['email']; // You can use email or name based on your need
-            header('Location: welcome.php');
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['username'] = $user['username']; 
+           // echo "Session variables set: ";
+           // print_r($_SESSION);// You can use email or name based on your need
+            header('Location: index.php');
             exit();
         } else {
             echo "Invalid password.";

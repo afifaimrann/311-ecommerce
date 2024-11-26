@@ -4,12 +4,7 @@ require 'database.php';
 
 <?php
 session_start();
-
-if (isset($_SESSION['user_id'])) {
-    header('Location: welcome.php');
-    exit();
-}
-if (isset($_POST['clear_cart'])) {
+ if (isset($_POST['clear_cart'])) {
     $_SESSION['cart'] = [];
     header("Location: index.php"); // Redirect to the front page
     exit();
@@ -51,11 +46,16 @@ if (isset($_POST['clear_cart'])) {
                     </div>
                 </div>
 
-                <div class="nav-signin border">
+              <div class="nav-signin border">
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <p><span>Hello, <?php echo htmlspecialchars($_SESSION['username']); ?></span></p>
+                    <form action="logout.php" method="POST" style="display: inline;">
+                        <button type="submit">Logout</button>
+                    </form>
+                <?php else: ?>
                     <p><span>Hello, sign in</span></p>
-                    <p class="nav-second">Account & Lists</p>
-                </div>
-
+                <?php endif; ?>
+            </div>
                 <div class="nav-return border">
                     <p><span>Returns</span></p>
                     <p class="nav-second">& Orders</p>
