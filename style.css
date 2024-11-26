@@ -284,7 +284,28 @@ button:hover {
 .auth-buttons button:hover {
     background-color: #005a63;
 }  
+.nav-signin {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Add gap between elements */
+}
 
+.nav-signin p {
+    margin: 0;
+}
+
+.nav-signin button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.nav-signin button:hover {
+    background-color: #45a049;
+}
 
 /* Optional: Add responsive design for better display on smaller screens */
 @media (max-width: 600px) {
