@@ -117,7 +117,7 @@ if (isset($_SESSION['user_id'])) {
                     <div class="box-content">
                       <h2> Sanitation Supplies</h2>
                       <div class="box-img" style="background-image: url('box2_image.jpg');"></div>
-                      <p>See more</p>
+                      <a href="Garments.php?category_id=2"><p>See more</p></a>
                     </div>
             </div>
             <div class="box">
