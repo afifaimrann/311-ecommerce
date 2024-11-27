@@ -19,7 +19,14 @@ $email = $_SESSION['email'];
     <title>Welcome</title>
 </head>
 <body>
-    <h1>Welcome, <?php echo htmlspecialchars($username); ?>!</h1>
+   <h1>Welcome, <?php echo htmlspecialchars($username); ?>!</h1>
     <p>Your email: <?php echo htmlspecialchars($email); ?></p>
+    <div class="button">
+    <form method="POST" action="clear_session.php" style="display: inline;">
+    <a href="index.php"><button>Go to Homepage</button></a>
+
+            </form>
+            <a href="signin.php"><button>Sign In</button></a>
+        </div>
 </body>
 </html>
