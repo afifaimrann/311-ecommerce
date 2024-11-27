@@ -29,12 +29,33 @@ session_start();
                 </div>
                 
                 <div class="nav-address border">
-                    <p class="add-first"> Deliver to </p>
-                    <div class="add-icon">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <p class="add-second">Bangladesh</p>
-                    </div>
-                </div>
+                     <p class="add-first">Deliver to</p>
+                  <div class="add-icon">
+                   <img src="bd_flag.png" alt="Bangladesh Flag" class="flag-icon">
+                       <form method="POST" class="dropdown-form">
+                          <select name="division" class="division-select" onchange="this.form.submit()">
+                             <option value="" disabled selected>Bangladesh</option>
+                             <option value="Barguna">B - Barguna</option>
+                              <option value="Barishal">B - Barishal</option>
+                             <option value="Bhola">B - Bhola</option>
+                             <option value="Bogura">B - Bogura</option>
+                             <option value="Brahmanbaria">B - Brahmanbaria</option>
+                             <option value="Chadpur">C - Chadpur</option>
+                             <option value="Chattogram">C - Chattogram</option>
+                             <option value="Chuadanga">C - Chuadanga</option>
+                             <option value="Cox's Bazar">C - Cox's Bazar</option>
+                             <option value="Dinajpur">D - Dinajpur</option>
+                             <option value="Dhaka">D - Dhaka</option>
+                             <option value="Lakshmipur">L -  Lakshmipur</option>
+                             <option value= "Noakhali">N - Noakhali</option>
+                             <option value="Sylhet">S -  Sylhet</option>
+                             <option value="Thakurgaon">T -  Thakurgaon</option>
+                        </select>
+                      </form>
+                   </div>
+           </div>
+ 
+                
 
                 <div class="nav-search border">
                     <select class="search-select">

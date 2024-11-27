@@ -29,21 +29,58 @@
     border: 3px solid white;
 }
 
+
 /** box2 **/
-.add-first{
-    color:#cccccc;
-    font-size:0.85rem;
+.add-first {
+    color: #cccccc;
+    font-size: 0.85rem;
     margin-left: 15px;
+    line-height: 1; 
 }
 
-.add-second{
-   font-size:1rem;
-   margin-left: 3px;
+.add-second {
+    font-size: 1rem;
+    margin-left: 10px;
+    font-weight: bold;
+    color: #007185;  
 }
-.add-icon{
+
+.add-icon {
     display: flex;
-    align-items: center;
+    align-items: center;  
+    gap: 8px; 
+    position: relative;
 }
+
+/* Flag styling */
+.flag-icon {
+    width: 20px; 
+    height: 14px;
+    border: 1px solid #ddd; 
+    border-radius: 2px;
+}
+
+
+.dropdown-form {
+    margin: 0;
+}
+
+.division-select {
+    font-size: 1rem;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #007185; 
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.division-select:focus {
+    outline: none;
+    border-color: #007185;
+    background-color: #fff;
+}
+
 
 /** box3 **/
 .nav-search {
