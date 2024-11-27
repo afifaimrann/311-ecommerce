@@ -138,7 +138,7 @@ session_start();
             <div class="box">
                 <div class="box-content">
                     <h2>Sanitation Supplies</h2>
-                    <div class="box-img" style="background-image: url('box2_image.jpg');"></div>
+                    <div class="box-img" style="background-image: url('box2_image.jpeg');"></div>
                     <a href="Garments.php?category_id=2"><p>See more</p></a>
                 </div>
             </div>
@@ -166,7 +166,7 @@ session_start();
             <div class="box">
                 <div class="box-content">
                     <h2>Pet Foods</h2>
-                    <div class="box-img" style="background-image: url('box6_image.jpg');"></div>
+                    <div class="box-img" style="background-image: url('box6_image.jpeg');"></div>
                     <p>See more</p>
                 </div>
             </div>
