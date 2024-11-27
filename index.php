@@ -75,17 +75,11 @@ session_start();
                 <div class="nav-signin border">
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <p><span>Hello, <?php echo htmlspecialchars($_SESSION['username']); ?></span></p>
-                 
->>>>>>> Stashed changes
                     <form action="logout.php" method="POST" style="display: inline;">
                         <button type="submit">Logout</button>
                     </form>
                 <?php else: ?>
                     <p><span>Hello, sign in</span></p>
-<<<<<<< Updated upstream
-=======
-             
->>>>>>> Stashed changes
                 <?php endif; ?>
             </div>
                 <div class="nav-return border">
