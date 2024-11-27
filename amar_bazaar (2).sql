@@ -1,3 +1,4 @@
+-- Active: 1732692322550@@127.0.0.1@3306@amar_bazaar
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
