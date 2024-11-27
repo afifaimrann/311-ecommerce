@@ -33,8 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bind_param("ssss", $username, $name, $email, $password_hashed);
 
         if ($stmt->execute()) {
-            // Store the user ID in the session and redirect to welcome page
-            $_SESSION['user_id'] = $conn->insert_id;
+              $_SESSION['user_id'] = $conn->insert_id;
+            $_SESSION['username'] = $username;
+            $_SESSION['email'] = $email;
             header('Location: welcome.php');
             exit();
         } else {
