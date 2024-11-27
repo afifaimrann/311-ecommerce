@@ -67,14 +67,22 @@ session_start();
                     </div>
                 </div>
 
+<<<<<<< Updated upstream
 
                 <div class="nav-signin border">
+=======
+              <div class="nav-signin border">
+>>>>>>> Stashed changes
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <p><span>Hello, <?php echo htmlspecialchars($_SESSION['username']); ?></span></p>
                     <form action="logout.php" method="POST" style="display: inline;">
                         <button type="submit">Logout</button>
                     </form>
+<<<<<<< Updated upstream
                   <form action="delete_account.php" method="POST" style="display: inline;">
+=======
+                    <form action="delete_account.php" method="POST" style="display: inline;">
+>>>>>>> Stashed changes
                         <button type="submit" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</button>
                     </form>
                 <?php else: ?>
