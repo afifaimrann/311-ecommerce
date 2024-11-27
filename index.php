@@ -67,11 +67,7 @@ session_start();
                     </div>
                 </div>
 
-<<<<<<< Updated upstream
-              <div class="nav-signin border">
-                <?php if (isset($_SESSION['user_id'])): ?>
-                    <p><span>Hello, <?php echo htmlspecialchars($_SESSION['username']); ?></span></p>
-=======
+
                 <div class="nav-signin border">
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <p><span>Hello, <?php echo htmlspecialchars($_SESSION['username']); ?></span></p>
