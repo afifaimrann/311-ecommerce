@@ -74,6 +74,9 @@ session_start();
                     <form action="logout.php" method="POST" style="display: inline;">
                         <button type="submit">Logout</button>
                     </form>
+                  <form action="delete_account.php" method="POST" style="display: inline;">
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</button>
+                    </form>
                 <?php else: ?>
                     <p><span>Hello, sign in</span></p>
                 <?php endif; ?>
