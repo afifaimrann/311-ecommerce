@@ -344,30 +344,45 @@ button:hover {
     background-color: #45a049;
 }
 
+ 
+.add-more-products {
+    display: flex;  
+    justify-content: space-evenly;  
+    gap: 20px;  
+    flex-wrap: wrap;  
+    margin-top: 20px;  
+}
+
+ 
 .add-more-button {
     padding: 10px 20px;
-    background-color: #45945e;   
+    background-color: #45945e;  
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    margin-top: 20px;
+    text-align: center;  
+    max-width: 200px;  
+    flex: 1 1 auto;  
+    white-space: nowrap;  
+    box-sizing: border-box; 
 }
 
 .add-more-button:hover {
     background-color: #b4c3c4;  
-}
 
-/* Optional: Add responsive design for better display on smaller screens */
-@media (max-width: 600px) {
-    table {
-        font-size: 14px;
-    }
-
-    button {
-        width: 100%;
+ 
+@media (max-width: 768px) {
+    .add-more-products {
+        flex-direction: column; 
+        align-items: center;  
     }
 }
+    .add-more-button {
+        width: 100%;  
+    }
+}
+
 .foot-panel4 {
     background-color: #232F3E; /* Dark background for contrast */
     color: white;

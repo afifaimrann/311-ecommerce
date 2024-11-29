@@ -76,6 +76,8 @@ INSERT INTO `categories` (`id`, `name`, `description`, `created_at`) VALUES
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `e-mail` varchar(50) NOT NULL,
+  `phone` int(15) NOT NULL,
   `total_amount` decimal(10,2) NOT NULL,
   `shipping_address` text NOT NULL,
   `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
