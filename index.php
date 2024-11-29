@@ -139,7 +139,7 @@ session_start();
                 <div class="box-content">
                     <h2>Sanitation Supplies</h2>
                     <div class="box-img" style="background-image: url('box2_image.jpeg');"></div>
-                    <a href="Garments.php?category_id=2"><p>For Sanitizing Your Home,Shop now</p></a>
+                    <a href="Garments.php?category_id=2"><p>For Sanitizing Your Home, Shop now</p></a>
                 </div>
             </div>
             <div class="box">
@@ -179,7 +179,7 @@ session_start();
                     <h2>Stationery and Toys</h2>
                     <div class="box-img" style="background-image: url('box7_image.jpg');"></div>
                     <a href="Garments.php?category_id=7"> 
-                    <p>See more</p></a>
+                    <p>Best Stationeries In Town</p></a>
                 </div>
             </div>
             <div class="box">
