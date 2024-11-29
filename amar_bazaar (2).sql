@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2024 at 05:28 PM
+-- Generation Time: Nov 29, 2024 at 08:53 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -76,8 +76,6 @@ INSERT INTO `categories` (`id`, `name`, `description`, `created_at`) VALUES
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `e-mail` varchar(50) NOT NULL,
-  `phone` int(15) NOT NULL,
   `total_amount` decimal(10,2) NOT NULL,
   `shipping_address` text NOT NULL,
   `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -153,7 +151,19 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `image`, `stock_qu
 (17, 'Canned Cat Food', 'Pet Metro kitten Canned Food chicken Goat Milk 375gm', 220.00, 'Canned_Food.png', 200, 6, '0000-00-00 00:00:00'),
 (18, 'Eraser', 'Mobile Phone Shape Creative Eraser Kids Stationery Toy', 100.00, 'eraser.png', 100, 7, '0000-00-00 00:00:00'),
 (19, 'Pencil Bag', 'Plush Stuffed Animal Pencil Bag', 180.00, 'bag.png', 200, 7, '0000-00-00 00:00:00'),
-(20, 'Stickers', '50 pcs Naruto Cartoon Stickers', 500.00, 'sticker.png', 300, 7, '0000-00-00 00:00:00');
+(20, 'Stickers', '50 pcs Naruto Cartoon Stickers', 500.00, 'sticker.png', 300, 7, '0000-00-00 00:00:00'),
+(21, 'Bracelet', '4 pcs Golden bracelet', 250.00, 'bracelet.png', 100, 8, '0000-00-00 00:00:00'),
+(22, 'Ring', 'Ring set for women', 150.00, 'ring.png', 150, 8, '0000-00-00 00:00:00'),
+(23, 'Pendant', 'Red Cherry Pendant Necklace', 250.00, 'pendant.png', 250, 8, '0000-00-00 00:00:00'),
+(24, 'Neck Pillow', 'Premium U-Shaped Pikachu Neck Pillow-12X14', 350.00, 'pillow.png', 100, 9, '0000-00-00 00:00:00'),
+(25, 'Luggage', '17 inch trolley luggage', 2500.00, 'luggage.png', 200, 9, '0000-00-00 00:00:00'),
+(26, 'Board Game', 'Monopoly board game', 400.00, 'board.png', 100, 10, '0000-00-00 00:00:00'),
+(27, 'Card Game', 'Uno Card Game', 300.00, 'card.png', 200, 10, '0000-00-00 00:00:00'),
+(28, 'Apron', 'Waterproof Rubber Vinyl Apron Industrial PVC Aprons', 350.00, 'apron.png', 100, 11, '0000-00-00 00:00:00'),
+(29, 'Spoon', 'Wooden Ladle Spoon Set', 800.00, 'spoon.png', 200, 11, '0000-00-00 00:00:00'),
+(30, 'Tongs', 'Stainless Steel Turner Tongs', 250.00, 'tongs.png', 300, 11, '0000-00-00 00:00:00'),
+(31, 'Moov', 'Rapid relief cream', 200.00, 'moov.png', 100, 12, '0000-00-00 00:00:00'),
+(32, 'Paracetamol', 'Treats milds to moderate pain and fever', 200.00, 'paracetamol.jpg', 200, 12, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -285,7 +295,7 @@ ALTER TABLE `payment_details`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `reviews`
