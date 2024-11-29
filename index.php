@@ -162,7 +162,8 @@ session_start();
                 <div class="box-content">
                     <h2>Skincare & Makeup</h2>
                     <div class="box-img" style="background-image: url('box5_image.jpg');"></div>
-                    <p>Get Your Daily Beauty Routine</p>
+                    <a href="Garments.php?category_id=4"> 
+                    <p>Get Your Daily Beauty Routine</p></a>
                 </div>
             </div>
             <div class="box">
