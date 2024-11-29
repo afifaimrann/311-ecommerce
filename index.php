@@ -139,7 +139,7 @@ session_start();
                 <div class="box-content">
                     <h2>Sanitation Supplies</h2>
                     <div class="box-img" style="background-image: url('box2_image.jpeg');"></div>
-                    <a href="Garments.php?category_id=2"><p>For Sanitize Your Home See more</p></a>
+                    <a href="Garments.php?category_id=2"><p>For Sanitizing Your Home,Shop now</p></a>
                 </div>
             </div>
             <div class="box">
