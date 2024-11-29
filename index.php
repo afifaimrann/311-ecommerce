@@ -88,7 +88,7 @@ session_start();
 
                 <div class="nav-cart border">
                     <a href="cart.php">
-                        <i class="fa-solid fa-cart-shopping"></i>
+                    <i class="fa-solid fa-cart-shopping"></i>
                         Cart (<span id="cart-count">0</span>)
                     </a>
                 </div> 
@@ -178,7 +178,8 @@ session_start();
                 <div class="box-content">
                     <h2>Stationery and Toys</h2>
                     <div class="box-img" style="background-image: url('box7_image.jpg');"></div>
-                    <p>See more</p>
+                    <a href="Garments.php?category_id=7"> 
+                    <p>See more</p></a>
                 </div>
             </div>
             <div class="box">
@@ -204,7 +205,7 @@ session_start();
             </div>
             <div class="box">
                 <div class="box-content">
-                    <h2>Clean Your Home</h2>
+                    <h2>Kitchen Deals</h2>
                     <div class="box-img" style="background-image: url('box11_image.jpg');"></div>
                     <p>See more</p>
                 </div>
