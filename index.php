@@ -190,7 +190,7 @@ session_start();
             </div>
             <div class="box">
                 <div class="box-content">
-                    <h2>Headphones & Music</h2>
+                    <h2>Travel Essentials</h2>
                     <div class="box-img" style="background-image: url('box9_image.jpg');"></div>
                     <p>See more</p>
                 </div>
