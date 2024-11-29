@@ -155,7 +155,7 @@ session_start();
                     <h2>Electronics</h2>
                     <div class="box-img" style="background-image: url('box4_image.jpg');"></div>
                    <a href="Garments.php?category_id=4"> 
-                    <p>Shop Best Electronics</p>
+                    <p>Shop Best Electronics</p></a>
                 </div>
             </div>
             <div class="box">
