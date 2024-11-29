@@ -95,5 +95,7 @@ foreach ($_SESSION['cart'] as $item) {
         <button type="submit" name="clear_cart">Clear Cart</button>
         <button type="submit" name="place_order">Place Order</button>
     </form>
+     <!-- Add More Products Button -->
+     <a href="index.php"><button type="button">Add More Products</button></a>
 </body>
 </html>
