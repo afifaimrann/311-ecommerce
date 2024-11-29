@@ -17,16 +17,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $address = $_POST['address'];
     $delivery_area = $_POST['delivery_area'];
 
-    // Calculate shipping charges based on delivery area
-    $shipping_charge = ($delivery_area == "Dhaka") ? 80 : 130;
+    
 
-    // Calculate total amount (you will need to calculate the total cart amount)
-    $total_amount = $_SESSION['cart_total'] + $shipping_charge; // Assuming cart_total is stored in session
+    // Calculate the total amount (including shipping charges)  
+                  $total_amount = 0;
+                  foreach ($_SESSION['cart'] as $item) {
+                  $total_amount += $item['total']; // Add the product's total price to the total amount
+}
 
+// Shipping charges logic based on delivery area
+                  $shipping_charge = ($delivery_area == "Dhaka") ? 80 : 130;
+                $total_amount += $shipping_charge; // Add shipping charges to the total amount
     // Insert order into the orders table
-    $stmt = $conn->prepare("INSERT INTO orders (user_id, email, phone, total_amount, shipping_address, status) 
-                            VALUES (?, ?, ?, ?, ?, 'Pending')");
-    $stmt->bind_param("issds", $user_id, $email, $phone, $total_amount, $address);
+     
+$stmt = $conn->prepare("INSERT INTO orders (user_id,total_amount, shipping_address, status, mail, phone) 
+VALUES (?, ?, ?, ?, ?, 'Pending')");
+$stmt->bind_param("issds", $user_id, $total_amount, $address, $mail, $phone);
+
     if ($stmt->execute()) {
         echo "Order placed successfully!"; // Success message
         // Optionally clear cart here
