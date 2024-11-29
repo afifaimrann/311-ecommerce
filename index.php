@@ -219,7 +219,7 @@ session_start();
                     <h2>Medicines</h2>
                     <div class="box-img" style="background-image: url('box12_image.jpg');"></div>
                     <a href="Garments.php?category_id=12"> 
-                    <p>See more</p></a>
+                    <p>Wellness Solutions</p></a>
                 </div>
             </div>
         </div>
