@@ -204,7 +204,7 @@ session_start();
             </div>
             <div class="box">
                 <div class="box-content">
-                    <h2>Clean Your Home</h2>
+                    <h2>Kitchen Deals</h2>
                     <div class="box-img" style="background-image: url('box11_image.jpg');"></div>
                     <p>See more</p>
                 </div>
