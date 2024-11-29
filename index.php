@@ -170,7 +170,8 @@ session_start();
                 <div class="box-content">
                     <h2>Pet Foods</h2>
                     <div class="box-img" style="background-image: url('box6_image.jpeg');"></div>
-                    <p>See more</p>
+                    <a href="Garments.php?category_id=6"> 
+                     <p>See more</p></a>
                 </div>
             </div>
             <div class="box">
