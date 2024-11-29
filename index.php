@@ -195,7 +195,7 @@ session_start();
                     <h2>Travel Essentials</h2>
                     <div class="box-img" style="background-image: url('box9_image.jpg');"></div>
                     <a href="Garments.php?category_id=9"> 
-                    <p>See more</p></a>
+                    <p>Travel Checklist</p></a>
                 </div>
             </div>
             <div class="box">
