@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< Updated upstream
 -- Generation Time: Nov 29, 2024 at 08:53 PM
+=======
+-- Generation Time: Nov 29, 2024 at 09:43 PM
+>>>>>>> Stashed changes
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -79,7 +83,9 @@ CREATE TABLE `orders` (
   `total_amount` decimal(10,2) NOT NULL,
   `shipping_address` text NOT NULL,
   `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` enum('Pending','Shipped','Delivered','Cancelled') DEFAULT 'Pending'
+  `status` enum('Pending','Shipped','Delivered','Cancelled') DEFAULT 'Pending',
+  `mail` varchar(50) NOT NULL,
+  `phone` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

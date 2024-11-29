@@ -52,6 +52,19 @@ $total = 0;
 foreach ($_SESSION['cart'] as $item) {
     $total += $item['total'];
 }
+
+// Redirect to order page if user clicks Place Order and is logged in
+if (isset($_POST['place_order'])) {
+    if (!isset($_SESSION['user_id'])) {
+        // If user is not logged in, redirect to signin.php
+        header("Location: signin.php");
+        exit();
+    } else {
+        // If user is logged in, redirect to order.php
+        header("Location: order.php");
+        exit();
+    }
+}
 ?>
 
 <!DOCTYPE html>

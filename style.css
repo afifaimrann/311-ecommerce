@@ -286,6 +286,7 @@ table th, table td {
 table th {
     background-color: #946565;
 }
+ 
 
 button {
     padding: 20px 40px;
@@ -428,3 +429,4 @@ button:hover {
     color: #ffffff;
     text-decoration: underline;
 }
+      
