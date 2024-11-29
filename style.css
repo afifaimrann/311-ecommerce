@@ -344,6 +344,20 @@ button:hover {
     background-color: #45a049;
 }
 
+.add-more-button {
+    padding: 10px 20px;
+    background-color: #45945e;   
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.add-more-button:hover {
+    background-color: #b4c3c4;  
+}
+
 /* Optional: Add responsive design for better display on smaller screens */
 @media (max-width: 600px) {
     table {
