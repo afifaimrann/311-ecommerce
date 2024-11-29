@@ -171,7 +171,7 @@ session_start();
                     <h2>Pet Foods</h2>
                     <div class="box-img" style="background-image: url('box6_image.jpeg');"></div>
                     <a href="Garments.php?category_id=6"> 
-                     <p>See more</p></a>
+                     <p>Best Food For Your Pet</p></a>
                 </div>
             </div>
             <div class="box">
