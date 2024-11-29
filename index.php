@@ -8,7 +8,7 @@ session_start();
     $_SESSION['cart'] = [];
     header("Location: index.php"); // Redirect to the front page
     exit();
-}
+}  
 ?>
 
 <!DOCTYPE html>
