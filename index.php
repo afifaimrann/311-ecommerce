@@ -187,7 +187,7 @@ session_start();
                     <h2>Ladies' Accessories</h2>
                     <div class="box-img" style="background-image: url('box8_image.jpg');"></div>
                     <a href="Garments.php?category_id=8"> 
-                    <p>See more</p></a>
+                    <p>Fashion Finds</p></a>
                 </div>
             </div>
             <div class="box">
