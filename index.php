@@ -88,7 +88,7 @@ session_start();
 
                 <div class="nav-cart border">
                     <a href="cart.php">
-                    <i class="fa-regular fa-cart-shopping" style="color: #fffafa;"></i>
+                    <i class="fa-solid fa-cart-shopping"></i>
                         Cart (<span id="cart-count">0</span>)
                     </a>
                 </div> 
