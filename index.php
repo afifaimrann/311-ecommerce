@@ -202,7 +202,8 @@ session_start();
                 <div class="box-content">
                     <h2>Get Your Games</h2>
                     <div class="box-img" style="background-image: url('box10_image.jpg');"></div>
-                    <p>Shop Gamming</p>
+                    <a href="Garments.php?category_id=10"> 
+                    <p>Shop Gamming</p></a>
                 </div>
             </div>
             <div class="box">
