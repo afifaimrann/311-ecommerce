@@ -178,7 +178,8 @@ session_start();
                 <div class="box-content">
                     <h2>Stationery and Toys</h2>
                     <div class="box-img" style="background-image: url('box7_image.jpg');"></div>
-                    <p>See more</p>
+                    <a href="Garments.php?category_id=7"> 
+                    <p>See more</p></a>
                 </div>
             </div>
             <div class="box">
