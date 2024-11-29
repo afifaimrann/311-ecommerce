@@ -132,35 +132,36 @@ session_start();
                 <div class="box-content">
                     <h2>Garments</h2>
                     <div class="box-img" style="background-image: url('box1_image.jpg');"></div>
-                    <a href="Garments.php?category_id=1"><p>See more</p></a>
+                    <a href="Garments.php?category_id=1"><p>Discover more</p></a>
                 </div>
             </div>
             <div class="box">
                 <div class="box-content">
                     <h2>Sanitation Supplies</h2>
                     <div class="box-img" style="background-image: url('box2_image.jpeg');"></div>
-                    <a href="Garments.php?category_id=2"><p>See more</p></a>
+                    <a href="Garments.php?category_id=2"><p>For Sanitize Your Home See more</p></a>
                 </div>
             </div>
             <div class="box">
                 <div class="box-content">
                     <h2>Home Accessories</h2>
                     <div class="box-img" style="background-image: url('box3_image.jpg');"></div>
-                     <a href="Garments.php?category_id=3"><p>See more</p></a>
+                     <a href="Garments.php?category_id=3"> 
+                    <p>Shop Home Products</p> </a>
                 </div>
             </div>
             <div class="box">
                 <div class="box-content">
                     <h2>Electronics</h2>
                     <div class="box-img" style="background-image: url('box4_image.jpg');"></div>
-                    <p>See more</p>
+                    <p>Shop Best Electronics</p>
                 </div>
             </div>
             <div class="box">
                 <div class="box-content">
                     <h2>Skincare & Makeup</h2>
                     <div class="box-img" style="background-image: url('box5_image.jpg');"></div>
-                    <p>See more</p>
+                    <p>Get Your Daily Beauty Routine</p>
                 </div>
             </div>
             <div class="box">
@@ -195,7 +196,7 @@ session_start();
                 <div class="box-content">
                     <h2>Get Your Games</h2>
                     <div class="box-img" style="background-image: url('box10_image.jpg');"></div>
-                    <p>See more</p>
+                    <p>Shop Gamming</p>
                 </div>
             </div>
             <div class="box">
