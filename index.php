@@ -163,7 +163,7 @@ session_start();
                     <h2>Skincare & Makeup</h2>
                     <div class="box-img" style="background-image: url('box5_image.jpg');"></div>
                     <a href="Garments.php?category_id=5"> 
-                    <p>Get Your Daily Beauty Routine</p></a>
+                    <p>Glam Gear</p></a>
                 </div>
             </div>
             <div class="box">
