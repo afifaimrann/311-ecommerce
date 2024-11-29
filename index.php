@@ -211,7 +211,7 @@ session_start();
                     <h2>Kitchen Deals</h2>
                     <div class="box-img" style="background-image: url('box11_image.jpg');"></div>
                     <a href="Garments.php?category_id=11"> 
-                        <p>See more</p></a>
+                        <p>Affordable Kitchen Gadgets</p></a>
                 </div>
             </div>
             <div class="box">
