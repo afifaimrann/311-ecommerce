@@ -35,7 +35,7 @@ session_start();
                        <form method="POST" class="dropdown-form">
                           <select name="division" class="division-select" onchange="this.form.submit()">
                              <option value="" disabled selected>Bangladesh</option>
-                             <option value= "Bandarban">N - Bandarban</option>
+                             <option value= "Bandarban">B - Bandarban</option>
                              <option value="Barguna">B - Barguna</option>
                               <option value="Barishal">B - Barishal</option>
                              <option value="Bhola">B - Bhola</option>
@@ -47,9 +47,10 @@ session_start();
                              <option value="Cox's Bazar">C - Cox's Bazar</option>
                              <option value="Dinajpur">D - Dinajpur</option>
                              <option value="Dhaka">D - Dhaka</option>
+                             <option value= "Khulna">K - Khulna</option>
                              <option value="Lakshmipur">L -  Lakshmipur</option>
                              <option value= "Noakhali">N - Noakhali</option>
-                             <option value= "Rangpur">N - Rangpur</option>
+                             <option value= "Rangpur">R - Rangpur</option>
                              <option value="Sylhet">S -  Sylhet</option>
                              <option value="Thakurgaon">T -  Thakurgaon</option>
                         </select>
