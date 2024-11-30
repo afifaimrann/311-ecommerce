@@ -1,14 +1,13 @@
 <?php
 require 'database.php';
-?>
-
-<?php
 session_start();
+
  if (isset($_POST['clear_cart'])) {
     $_SESSION['cart'] = [];
     header("Location: index.php"); // Redirect to the front page
     exit();
 }  
+$cart_count = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
 ?>
 
 <!DOCTYPE html>
@@ -95,7 +94,7 @@ session_start();
                 <div class="nav-cart border">
                     <a href="cart.php">
                     <i class="fa-solid fa-cart-shopping"></i>
-                        Cart (<span id="cart-count">0</span>)
+                    Cart (<span id="cart-count"><?php echo $cart_count; ?></span>)
                     </a>
                 </div> 
 
