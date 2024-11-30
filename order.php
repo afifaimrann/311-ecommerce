@@ -2,44 +2,50 @@
 session_start();
 include 'database.php'; // Include the database connection
 
-// Redirect to login page if user is not logged in
+// Check if the user is logged in, otherwise redirect to login page
 if (!isset($_SESSION['user_id'])) {
     header('Location: signin.php');
     exit();
 }
 
-// Check if the form is submitted
+// Flag to check if the order has been successfully placed
+$order_success = false;
+
+// Process order form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Capture order details from form
-    $user_id = $_SESSION['user_id'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $address = $_POST['address'];
-    $delivery_area = $_POST['delivery_area'];
+    // Capture user details
+    $user_id = $_SESSION['user_id'];   
+    $mail = $_POST['mail'];          
+    $phone = $_POST['phone'];          
+    $address = $_POST['address'];      
+    $delivery_area = $_POST['delivery_area'];  
+
+     
+    $total_amount = 0;
+    foreach ($_SESSION['cart'] as $item) {
+        $total_amount += $item['total']; // Calculate total of items in the cart
+    }
+
+    // Add shipping charges based on the delivery area
+    $shipping_charge = ($delivery_area == "Dhaka") ? 80 : 130;
+    $total_amount += $shipping_charge;  
+    $stmt = $conn->prepare("INSERT INTO orders (user_id, total_amount, shipping_address, order_date, status, `mail`, phone) 
+                            VALUES (?, ?, ?, CURRENT_TIMESTAMP, 'Pending', ?, ?)");
+    
+     
+    $stmt->bind_param("idsss", $user_id, $total_amount, $address, $email, $phone);
 
     
 
-    // Calculate the total amount (including shipping charges)  
-                  $total_amount = 0;
-                  foreach ($_SESSION['cart'] as $item) {
-                  $total_amount += $item['total']; // Add the product's total price to the total amount
-}
-
-// Shipping charges logic based on delivery area
-                  $shipping_charge = ($delivery_area == "Dhaka") ? 80 : 130;
-                $total_amount += $shipping_charge; // Add shipping charges to the total amount
-    // Insert order into the orders table
-     
-$stmt = $conn->prepare("INSERT INTO orders (user_id,total_amount, shipping_address, status, mail, phone) 
-VALUES (?, ?, ?, ?, ?, 'Pending')");
-$stmt->bind_param("issds", $user_id, $total_amount, $address, $mail, $phone);
-
     if ($stmt->execute()) {
-        echo "Order placed successfully!"; // Success message
-        // Optionally clear cart here
+        // Clear the cart after successful order placement
         unset($_SESSION['cart']);
+
+        // Set flag to show success message
+        $order_success = true;
     } else {
-        echo "Error placing order!";
+         
+        echo "Error placing order: " . $stmt->error;
     }
 }
 ?>
@@ -49,7 +55,7 @@ $stmt->bind_param("issds", $user_id, $total_amount, $address, $mail, $phone);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Details</title>
+    <title>Order Confirmation</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -71,12 +77,10 @@ $stmt->bind_param("issds", $user_id, $total_amount, $address, $mail, $phone);
             text-align: center;
             margin-bottom: 20px;
         }
-        .order-container input, .order-container textarea, .order-container select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+        .order-container p {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 20px;
         }
         .order-container button {
             width: 100%;
@@ -86,35 +90,41 @@ $stmt->bind_param("issds", $user_id, $total_amount, $address, $mail, $phone);
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            margin-bottom: 10px;
         }
         .order-container button:hover {
             background-color: #45a049;
+        }
+        .order-container .cancel-btn {
+            background-color: #f44336; /* Red for cancel */
+        }
+        .order-container .cancel-btn:hover {
+            background-color: #d32f2f;
         }
     </style>
 </head>
 <body>
     <div class="order-container">
-        <h2>Order Details</h2>
+        <?php if ($order_success): ?>
+            <!-- Success Message -->
+            <h2>Order Placed Successfully!</h2>
+            <p>Your order has been placed successfully. Thank you for shopping with us!</p>
 
-        <!-- Order Form -->
-        <form method="POST" action="order.php">
-            <label>Email:</label>
-            <input type="email" name="email" value="<?php echo $_SESSION['email']; ?>" required><br>
+            <!-- Button to Cancel Order (redirect to home) -->
+            <form method="POST" action="index.php">
+                <button class="cancel-btn" type="submit">Cancel Order</button>
+            </form>
 
-            <label>Phone:</label>
-            <input type="text" name="phone" required><br>
-
-            <label>Shipping Address:</label>
-            <textarea name="address" required></textarea><br>
-
-            <label>Delivery Area:</label>
-            <select name="delivery_area" required>
-                <option value="Dhaka">Inside Dhaka</option>
-                <option value="Outside Dhaka">Outside Dhaka</option>
-            </select><br>
-
-            <button type="submit">Place Order</button>
-        </form>
+            <!-- Button to Go Back to Home -->
+            <form method="POST" action="index.php">
+                <button type="submit">Back to Home</button>
+            </form>
+        <?php else: ?>
+            <!-- If no order has been placed, show an error message -->
+            <h2>Something Went Wrong</h2>
+            <p>There was an issue with placing your order. Please try again later.</p>
+            <a href="cart.php"><button>Back to Cart</button></a>
+        <?php endif; ?>
     </div>
 </body>
 </html>
