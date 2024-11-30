@@ -34,31 +34,69 @@ try {
 
 // Handle adding products to cart directly in this file
 if (isset($_POST['add_to_cart'])) {
+    if (!isset($_SESSION['user_id'])) {
+        // If user is not logged in, redirect to signin.php
+        header("Location: signin.php");
+        exit();
+    }
+   
+
+    $user_id = $_SESSION['user_id'];
     $product_id = $_POST['product_id'];
-    $product_name = $_POST['product_name'];
-    $product_price = $_POST['product_price'];
-    $product_image = $_POST['product_image'];
     $quantity = (int) $_POST['quantity'];
 
-    // Initialize cart if not exists
-    if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'] = [];
+    if ($quantity < 1) {
+        $quantity = 1;
+    }
+    $stmt = $conn->prepare("SELECT name, price, image FROM products WHERE id = ?");
+    $stmt->bind_param("i", $product_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $product = $result->fetch_assoc();
+
+    if (!$product) {
+        die("Product not found.");
     }
 
-    // Check if product already exists in cart
+    $product_name = $product['name'];
+    $product_price = $product['price'];
+    $product_image = $product['image'];
+
+    $stmt = $conn->prepare("SELECT id, quantity,product_id FROM cart WHERE user_id = ? AND product_id = ?");
+    $stmt->bind_param("ii", $user_id, $product_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $cart_item = $result->fetch_assoc();
+
+    if ($cart_item) {
+        // Update quantity if product already exists in cart
+        $new_quantity = $cart_item['quantity'] + $quantity;
+        $stmt = $conn->prepare("UPDATE cart SET quantity = ?, total_price = ? WHERE id = ?");
+        $total_price = $product_price * $new_quantity;
+        $stmt->bind_param("idi", $new_quantity, $total_price,$cart_item['id']);
+        $stmt->execute();
+    
+    } else {
+        // Insert new product into cart
+        $stmt = $conn->prepare("INSERT INTO cart (user_id, product_id,quantity, total_price) VALUES (?, ?, ?, ?)");
+        $total_price = $product_price * $quantity;
+        $stmt->bind_param("iiid", $user_id, $product_id, $quantity, $total_price);
+        $stmt->execute();
+    
+    }
+
     $found = false;
     foreach ($_SESSION['cart'] as &$item) {
         if ($item['id'] == $product_id) {
-            $item['quantity'] += $quantity; // Update quantity
-            $item['total'] = $item['quantity'] * $item['price']; // Update total
+            $item['quantity'] += $quantity;
+            $item['total'] = $item['price'] * $item['quantity'];
             $found = true;
             break;
         }
     }
 
-    // If the product is not in the cart, add it
     if (!$found) {
-        $_SESSION['cart'][] = [
+        $item = [
             "id" => $product_id,
             "name" => $product_name,
             "price" => $product_price,
@@ -66,7 +104,10 @@ if (isset($_POST['add_to_cart'])) {
             "total" => $product_price * $quantity,
             "image" => $product_image
         ];
+        $_SESSION['cart'][] = $item; // Add item to session cart
     }
+
+
 
     // Display a success message
     echo "<p style='color: green;'>Product added to cart successfully!</p>";
