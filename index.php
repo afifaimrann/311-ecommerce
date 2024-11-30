@@ -82,6 +82,7 @@ session_start();
                 <?php endif; ?>
             </div>
                 <div class="nav-return border">
+                <a href="order.php">
                     <p><span>Returns</span></p>
                     <p class="nav-second">& Orders</p>
                 </div>
