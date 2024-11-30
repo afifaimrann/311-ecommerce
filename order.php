@@ -51,6 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->execute();
             
             $order_success = true; // Set success flag to show the success message
+            // Get the last inserted order ID for the invoice
+            $order_id = $stmt->insert_id;
         } else {
             $error_message = "Error placing order: " . $stmt->error;
         }
@@ -115,6 +117,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         .order-container .back-btn:hover {
             background-color: #005f6a;
         }
+
+        /* Style for the invoice section */
+        .invoice {
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            text-align: left;
+        }
+        .invoice h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .invoice p {
+            margin: 5px 0;
+        }
+        .invoice .total {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -123,6 +145,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <!-- Success Message -->
             <h2>Order Placed Successfully!</h2>
             <p>Your order has been placed successfully. Thank you for shopping with us!</p>
+
+            <!-- Invoice Display -->
+            <div class="invoice">
+                <h3>Invoice</h3>
+                <p><strong>Phone:</strong> <?= htmlspecialchars($phone); ?></p>
+                <p><strong>Address:</strong> <?= htmlspecialchars($address); ?></p>
+                <p><strong>Delivery Area:</strong> <?= htmlspecialchars($delivery_area); ?></p>
+                <p class="total"><strong>Total Amount:</strong> <?= number_format($total_amount, 2); ?> BDT</p>
+            </div>
 
             <!-- Button to Cancel Order (redirect to home) -->
             <form method="POST" action="index.php">
