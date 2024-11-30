@@ -1,47 +1,50 @@
 <?php
+require 'database.php';
 session_start();
-include 'database.php'; // Include the database connection
-
-// Check if the user is logged in, otherwise redirect to login page
-if (!isset($_SESSION['user_id'])) {
-    header('Location: signin.php');
-    exit();
-}
-
 // Flag to check if the order has been successfully placed
 $order_success = false;
+?>
+<?php
 
 // Process order form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Capture user details
     $user_id = $_SESSION['user_id'];   
-    $mail = $_POST['mail'];          
+    $mail = $_SESSION['email'];          
     $phone = $_POST['phone'];          
     $address = $_POST['address'];      
     $delivery_area = $_POST['delivery_area'];  
+    if (empty($_SESSION['cart'])) {
+        die("Cart is empty. Cannot proceed with the order.");
+    }
 
      
     $total_amount = 0;
-    foreach ($_SESSION['cart'] as $item) {
+    foreach ($_SESSION['cart'] as $item)
+     {
         $total_amount += $item['total']; // Calculate total of items in the cart
     }
 
     // Add shipping charges based on the delivery area
     $shipping_charge = ($delivery_area == "Dhaka") ? 80 : 130;
     $total_amount += $shipping_charge;  
-    $stmt = $conn->prepare("INSERT INTO orders (user_id, total_amount, shipping_address, order_date, status, `mail`, phone) 
-                            VALUES (?, ?, ?, CURRENT_TIMESTAMP, 'Pending', ?, ?)");
-    
+    $stmt = $conn->prepare("INSERT INTO orders (user_id, total_amount, shipping_address,mail, phone) 
+                            VALUES (?, ?, ?, ?, ?)");
+    if ($stmt === false) {
+        die("SQL Prepare Failed: " . $conn->error);
+    }
      
-    $stmt->bind_param("idsss", $user_id, $total_amount, $address, $email, $phone);
+    $stmt->bind_param("idsss", $user_id, $total_amount, $address, $mail, $phone);
 
     
 
     if ($stmt->execute()) {
         // Clear the cart after successful order placement
         unset($_SESSION['cart']);
-
-        // Set flag to show success message
+     
+        $stmt = $conn->prepare("DELETE FROM cart WHERE user_id = ?");
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
         $order_success = true;
     } else {
          
