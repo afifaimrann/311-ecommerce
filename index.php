@@ -48,6 +48,7 @@ $cart_count = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
                              <option value="Dhaka">D - Dhaka</option>
                              <option value= "Khulna">K - Khulna</option>
                              <option value="Lakshmipur">L -  Lakshmipur</option>
+                             <option value="Maymensingh">M -  Maymensingh</option>
                              <option value= "Noakhali">N - Noakhali</option>
                              <option value= "Rangpur">R - Rangpur</option>
                              <option value="Sylhet">S -  Sylhet</option>
