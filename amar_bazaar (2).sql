@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2024 at 05:46 PM
+-- Generation Time: Nov 30, 2024 at 08:48 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -74,54 +74,27 @@ INSERT INTO `categories` (`id`, `name`, `description`, `created_at`) VALUES
 --
 
 CREATE TABLE `orders` (
-  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `total_amount` decimal(10,2) NOT NULL,
   `shipping_address` text NOT NULL,
   `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` enum('Pending','Shipped','Delivered','Cancelled') DEFAULT 'Pending',
   `mail` varchar(50) NOT NULL,
-  `phone` int(15) NOT NULL
+  `phone` int(15) NOT NULL,
+  `order_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `total_amount`, `shipping_address`, `order_date`, `status`, `mail`, `phone`) VALUES
-(1, 4, 380.00, 'abc', '2024-11-29 22:48:41', NULL, '01910523879', 0),
-(2, 18, 1280.00, 'abc', '2024-11-30 16:03:54', 'Pending', 'imam.rakib@northsouth.edu', 1910523879),
-(3, 18, 1280.00, 'abc', '2024-11-30 16:17:41', 'Pending', 'imam.rakib@northsouth.edu', 1910523879),
-(4, 18, 100379.97, 'abc', '2024-11-30 16:20:23', 'Pending', 'imam.rakib@northsouth.edu', 1910523879),
-(5, 18, 520.00, 'abc', '2024-11-30 16:27:01', 'Pending', 'imam.rakib@northsouth.edu', 1910523879);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `order_items`
---
-
-CREATE TABLE `order_items` (
-  `id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `price` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `payment_details`
---
-
-CREATE TABLE `payment_details` (
-  `id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `payment_method` enum('Credit Card','Debit Card','PayPal','Cash on Delivery') NOT NULL,
-  `payment_status` enum('Pending','Completed','Failed','Refunded') DEFAULT 'Pending',
-  `payment_date` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `orders` (`user_id`, `total_amount`, `shipping_address`, `order_date`, `status`, `mail`, `phone`, `order_id`) VALUES
+(4, 380.00, 'abc', '2024-11-29 22:48:41', NULL, '01910523879', 0, 1),
+(20, 580.00, 'uttara,dhaka', '2024-11-30 15:19:51', 'Pending', 'payeldas@gmail.com', 1632932548, 2),
+(20, 1080.00, 'uttara,dhaka', '2024-11-30 15:25:04', 'Pending', 'payeldas@gmail.com', 1632932548, 3),
+(20, 2080.00, 'uttara,dhaka', '2024-11-30 15:41:29', 'Pending', 'payeldas@gmail.com', 1632932548, 4),
+(20, 1580.00, 'uttara,dhaka', '2024-11-30 16:44:44', 'Pending', 'payeldas@gmail.com', 1632932548, 5),
+(20, 2080.00, 'uttara,dhaka', '2024-11-30 16:45:55', 'Pending', 'payeldas@gmail.com', 1632932548, 6);
 
 -- --------------------------------------------------------
 
@@ -189,8 +162,7 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `image`, `stock_qu
 (42, 'Almirah', 'Almirah is a piece of very essential and common furniture for the home.', 59999.99, 'almirah.png', 10, 3, '2024-11-30 04:00:00'),
 (43, 'Reading Table', 'Looking for a study table for students? Check out our collection.', 19999.99, 'RT.png', 30, 3, '2024-11-30 04:00:00'),
 (44, 'Hand Wash', 'Hand wash is a liquid shop that kills all germs and is fresh and fragrant', 19.99, 'handwash.png', 100, 2, '2024-11-30 04:00:00'),
-(45, 'Fountain Pen', 'Discover our collection of Luxury Fountain Pens', 199.99, 'fountainpen.png', 50, 7, '2024-11-30 04:00:00'),
-(46, 'Dog Food', 'Amar Bazaar has a wide range of wet and dry foods with different quantities for your dogs', 1999.99, 'dogfood.png', 100, 6, '2024-11-30 04:00:00');
+(45, 'Fountain Pen', 'Discover our collection of Luxury Fountain Pens', 199.99, 'fountainpen.png', 50, 7, '2024-11-30 04:00:00');
 
 -- --------------------------------------------------------
 
@@ -233,7 +205,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `created_at`
 (4, 'Payel03', 'payel.das@northsouth.edu', '$2y$10$c2YxiS3m6sT2hhTYk/6z4O1xAPy3q5PZuJvZp63ky34zQu4x3.KQO', 'customer', '2024-11-26 17:14:22', 'Payel Das'),
 (6, 'payel', 'payeld296@gmail.com', '$2y$10$kaNsxSh913GUqAiZnnDQ0..hexk1NEoEolj1R4aUNkwxP0x8nSydS', 'customer', '2024-11-27 04:33:38', 'Payel Das'),
 (7, 'abc', 'abcd@gmail.com', '$2y$10$rB5pA6lYjWVEA.QW8NkZA.4FEYPWBY3TWqrCbcpVwdzmW.dXBibnm', 'customer', '2024-11-27 05:26:46', 'abcd'),
-(18, 'IhRakib', 'imam.rakib@northsouth.edu', '$2y$10$zevzRwMKL6U/0K8GGz7IlOV99rVj2OZ2dwdOxxOtEsrEchzQVLWi2', 'customer', '2024-11-29 23:46:46', 'Md. Imam Hossain Rakib');
+(18, 'IhRakib', 'imam.rakib@northsouth.edu', '$2y$10$zevzRwMKL6U/0K8GGz7IlOV99rVj2OZ2dwdOxxOtEsrEchzQVLWi2', 'customer', '2024-11-29 23:46:46', 'Md. Imam Hossain Rakib'),
+(20, 'pd', 'payeldas@gmail.com', '$2y$10$LmWEl3eBZsNboXF7/VeF8O5rumP1yhRnS4yslRRycdpr3GdVGQTNO', 'customer', '2024-11-30 10:40:47', 'payel');
 
 --
 -- Indexes for dumped tables
@@ -250,23 +223,8 @@ ALTER TABLE `categories`
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`order_id`),
   ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `order_items`
---
-ALTER TABLE `order_items`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `order_id` (`order_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Indexes for table `payment_details`
---
-ALTER TABLE `payment_details`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `order_id` (`order_id`);
 
 --
 -- Indexes for table `products`
@@ -305,25 +263,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `order_items`
---
-ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `payment_details`
---
-ALTER TABLE `payment_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -335,7 +281,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables
@@ -345,20 +291,8 @@ ALTER TABLE `users`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
+  ADD CONSTRAINT `FK_ID` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `order_items`
---
-ALTER TABLE `order_items`
-  ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
-  ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
-
---
--- Constraints for table `payment_details`
---
-ALTER TABLE `payment_details`
-  ADD CONSTRAINT `payment_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
 
 --
 -- Constraints for table `products`
