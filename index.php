@@ -35,6 +35,7 @@ session_start();
                        <form method="POST" class="dropdown-form">
                           <select name="division" class="division-select" onchange="this.form.submit()">
                              <option value="" disabled selected>Bangladesh</option>
+                             <option value= "Bandarban">N - Bandarban</option>
                              <option value="Barguna">B - Barguna</option>
                               <option value="Barishal">B - Barishal</option>
                              <option value="Bhola">B - Bhola</option>
