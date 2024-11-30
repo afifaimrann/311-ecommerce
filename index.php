@@ -48,6 +48,7 @@ session_start();
                              <option value="Dhaka">D - Dhaka</option>
                              <option value="Lakshmipur">L -  Lakshmipur</option>
                              <option value= "Noakhali">N - Noakhali</option>
+                             <option value= "Rangpur">N - Rangpur</option>
                              <option value="Sylhet">S -  Sylhet</option>
                              <option value="Thakurgaon">T -  Thakurgaon</option>
                         </select>
