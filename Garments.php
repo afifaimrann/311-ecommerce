@@ -108,6 +108,7 @@ if (isset($_POST['add_to_cart'])) {
         ?>
     </div>
 
-    <a href="cart.php">Go to Cart</a>
+    <a href="cart.php" class="btn-cart">Go to Cart</a>
+
 </body>
 </html>
