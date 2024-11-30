@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2024 at 01:13 AM
+-- Generation Time: Nov 30, 2024 at 03:03 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -176,7 +176,16 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `image`, `stock_qu
 (33, 'NAPA', 'Treated For Influenza', 199.99, 'napa.png', 200, 12, '2024-11-30 04:00:00'),
 (34, 'FEXOFENADINE', 'Is an antihistamine medicine that helps with the symptoms of allergies', 249.99, 'fexo.png', 300, 12, '2024-11-30 04:20:00'),
 (35, 'HISTACIN', 'Symptomatic treatment of allergic rhinitis, rash & urticaria.', 149.99, 'histacin.png', 200, 12, '2024-11-30 04:20:00'),
-(36, 'DEATHPOOL', 'Deadpool is an action-adventure video game based on the Marvel Comics antihero of the same name.', 249.99, 'deathpool.jpg', 200, 10, '2024-11-30 04:20:00');
+(36, 'DEATHPOOL', 'Deadpool is an action-adventure video game based on the Marvel Comics antihero of the same name.', 249.99, 'deathpool.jpg', 200, 10, '2024-11-30 04:20:00'),
+(37, 'TENT', 'Tent For Adventure', 3199.99, 'tent.png', 100, 9, '2024-11-30 04:00:00'),
+(38, 'FIFA', 'EA SPORTS FC™ 24 kicks off a new era of The Worlds Game.', 69.99, 'fifa.png', 200, 10, '2024-11-30 04:00:00'),
+(39, 'WASHING MACHINE', ' Amar Bazaar offers all types of Washing Machine with variation of choices', 29999.99, 'washingmachine.png', 20, 4, '2024-11-30 04:00:00'),
+(40, 'TELIVISION', 'Buy Television at the best price in Bangladesh', 69999.99, 'TV.png', 10, 4, '2024-11-30 04:00:00'),
+(41, 'MICRO OVEN', 'Amar Bazaar is the best place to buy Ovens in Bangladesh.', 19999.99, 'oven.png', 20, 4, '2024-11-30 04:00:00'),
+(42, 'Almirah', 'Almirah is a piece of very essential and common furniture for the home.', 59999.99, 'almirah.png', 10, 3, '2024-11-30 04:00:00'),
+(43, 'Reading Table', 'Looking for a study table for students? Check out our collection.', 19999.99, 'RT.png', 30, 3, '2024-11-30 04:00:00'),
+(44, 'Hand Wash', 'Hand wash is a liquid shop that kills all germs and is fresh and fragrant', 19.99, 'handwash.png', 100, 2, '2024-11-30 04:00:00'),
+(45, 'Fountain Pen', 'Discover our collection of Luxury Fountain Pens', 199.99, 'fountainpen.png', 50, 7, '2024-11-30 04:00:00');
 
 -- --------------------------------------------------------
 
@@ -309,7 +318,7 @@ ALTER TABLE `payment_details`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `reviews`
