@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2024 at 08:53 PM
+-- Generation Time: Nov 30, 2024 at 01:13 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -83,6 +83,13 @@ CREATE TABLE `orders` (
   `mail` varchar(50) NOT NULL,
   `phone` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `total_amount`, `shipping_address`, `order_date`, `status`, `mail`, `phone`) VALUES
+(1, 4, 380.00, 'abc', '2024-11-29 22:48:41', NULL, '01910523879', 0);
 
 -- --------------------------------------------------------
 
@@ -165,7 +172,11 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `image`, `stock_qu
 (29, 'Spoon', 'Wooden Ladle Spoon Set', 800.00, 'spoon.png', 200, 11, '0000-00-00 00:00:00'),
 (30, 'Tongs', 'Stainless Steel Turner Tongs', 250.00, 'tongs.png', 300, 11, '0000-00-00 00:00:00'),
 (31, 'Moov', 'Rapid relief cream', 200.00, 'moov.png', 100, 12, '0000-00-00 00:00:00'),
-(32, 'Paracetamol', 'Treats milds to moderate pain and fever', 200.00, 'paracetamol.jpg', 200, 12, '0000-00-00 00:00:00');
+(32, 'Paracetamol', 'Treats milds to moderate pain and fever', 200.00, 'paracetamol.jpg', 200, 12, '0000-00-00 00:00:00'),
+(33, 'NAPA', 'Treated For Influenza', 199.99, 'napa.png', 200, 12, '2024-11-30 04:00:00'),
+(34, 'FEXOFENADINE', 'Is an antihistamine medicine that helps with the symptoms of allergies', 249.99, 'fexo.png', 300, 12, '2024-11-30 04:20:00'),
+(35, 'HISTACIN', 'Symptomatic treatment of allergic rhinitis, rash & urticaria.', 149.99, 'histacin.png', 200, 12, '2024-11-30 04:20:00'),
+(36, 'DEATHPOOL', 'Deadpool is an action-adventure video game based on the Marvel Comics antihero of the same name.', 249.99, 'deathpool.jpg', 200, 10, '2024-11-30 04:20:00');
 
 -- --------------------------------------------------------
 
@@ -207,7 +218,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `created_at`
 (3, 'Afifa', 'afifa@gmail.com', '$2y$10$vDVQ3iOjXBDbTJVa9jQ7D.Z4p/eXQ85AFHQKYy8xlHu47KSSMsBSa', 'customer', '2024-11-21 16:39:06', 'Afifa'),
 (4, 'Payel03', 'payel.das@northsouth.edu', '$2y$10$c2YxiS3m6sT2hhTYk/6z4O1xAPy3q5PZuJvZp63ky34zQu4x3.KQO', 'customer', '2024-11-26 17:14:22', 'Payel Das'),
 (6, 'payel', 'payeld296@gmail.com', '$2y$10$kaNsxSh913GUqAiZnnDQ0..hexk1NEoEolj1R4aUNkwxP0x8nSydS', 'customer', '2024-11-27 04:33:38', 'Payel Das'),
-(7, 'abc', 'abcd@gmail.com', '$2y$10$rB5pA6lYjWVEA.QW8NkZA.4FEYPWBY3TWqrCbcpVwdzmW.dXBibnm', 'customer', '2024-11-27 05:26:46', 'abcd');
+(7, 'abc', 'abcd@gmail.com', '$2y$10$rB5pA6lYjWVEA.QW8NkZA.4FEYPWBY3TWqrCbcpVwdzmW.dXBibnm', 'customer', '2024-11-27 05:26:46', 'abcd'),
+(18, 'IhRakib', 'imam.rakib@northsouth.edu', '$2y$10$zevzRwMKL6U/0K8GGz7IlOV99rVj2OZ2dwdOxxOtEsrEchzQVLWi2', 'customer', '2024-11-29 23:46:46', 'Md. Imam Hossain Rakib');
 
 --
 -- Indexes for dumped tables
@@ -279,7 +291,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `order_items`
@@ -297,7 +309,7 @@ ALTER TABLE `payment_details`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -309,7 +321,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
