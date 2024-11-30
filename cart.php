@@ -6,51 +6,54 @@ include 'database.php';
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
-
-// Add product to cart
-if (isset($_POST['add_to_cart'])) {
-    $product_id = $_POST['product_id'];
-    $product_name = $_POST['product_name']; // Added product name
-    $product_price = $_POST['product_price']; // Added product price
-    $product_image = $_POST['product_image']; // Added product image
-    $quantity = (int) $_POST['quantity']; // Ensure quantity is an integer
-
-    // Validate quantity (default to 1 if invalid)
-    if ($quantity < 1) {
-        $quantity = 1;
-    }
-
-    // Add the product details to the cart
-    $item = [
-        "id" => $product_id,
-        "name" => $product_name,
-        "price" => $product_price,
-        "quantity" => $quantity,
-        "total" => $product_price * $quantity,
-        "image" => $product_image // Added image for display
-    ];
-
-    $_SESSION['cart'][] = $item; // Add item to session cart
-}
+$user_id = $_SESSION['user_id'];
+$stmt = $conn->prepare("SELECT c.product_id, p.name as product_name, p.price as product_price, c.quantity, c.total_price, p.image as product_image FROM cart c join products p on 
+            p.id=c.product_id WHERE c.user_id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$cart_items = $result->fetch_all(MYSQLI_ASSOC);
 
 // Remove product from cart
 if (isset($_GET['remove'])) {
-    $remove_id = $_GET['remove'];
-    unset($_SESSION['cart'][$remove_id]);
-    $_SESSION['cart'] = array_values($_SESSION['cart']); // Reindex array
+    $product_id = $_GET['remove'];
+
+    // Remove product from database cart
+    $stmt = $conn->prepare("DELETE FROM cart WHERE user_id = ? AND product_id = ?");
+    $stmt->bind_param("ii", $user_id, $product_id);
+    $stmt->execute();
+
+    // Remove product from session cart
+    foreach ($_SESSION['cart'] as $index => $item) {
+        if ($item['id'] == $product_id) {
+            unset($_SESSION['cart'][$index]);
+            $_SESSION['cart'] = array_values($_SESSION['cart']); // Reindex array
+            break;
+        }
+    }
+
+    header("Location: cart.php"); // Redirect to the cart page
+    exit();
 }
 
 // Clear cart
 if (isset($_POST['clear_cart'])) {
+    // Clear session cart
     $_SESSION['cart'] = [];
-    header("Location: index.php"); // Redirect to the front page
+
+    // Clear database cart
+    $stmt = $conn->prepare("DELETE FROM cart WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+
+    header("Location: cart.php"); // Redirect to the cart page
     exit();
 }
 
 // Calculate total
 $total = 0;
-foreach ($_SESSION['cart'] as $item) {
-    $total += $item['total'];
+foreach ($cart_items as $item) {
+    $total += $item['total_price'];
 }
 
 // Redirect to order page if user clicks Place Order and is logged in
@@ -65,8 +68,15 @@ if (isset($_POST['place_order'])) {
         exit();
     }
 }
-?>
 
+
+if (isset($_POST['place_order'])) {
+        // If user is logged in, redirect to order.php
+        header("Location: order.php");
+        exit();
+    }
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -90,14 +100,14 @@ if (isset($_POST['place_order'])) {
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($_SESSION['cart'] as $index => $item): ?>
+            <?php foreach ($cart_items as $item): ?>
                 <tr>
-                    <td><img src="<?= htmlspecialchars($item['image']) ?>" alt="Product Image" style="width: 50px; height: 50px;"></td> <!-- Display product image -->
-                    <td><?= htmlspecialchars($item['name']) ?></td>
-                    <td><?= number_format($item['price'], 2) ?></td>
+                    <td><img src="<?= htmlspecialchars($item['product_image']) ?>" alt="Product Image" style="width: 50px; height: 50px;"></td> <!-- Display product image -->
+                    <td><?= htmlspecialchars($item['product_name']) ?></td>
+                    <td><?= number_format($item['product_price'], 2) ?></td>
                     <td><?= htmlspecialchars($item['quantity']) ?></td>
-                    <td><?= number_format($item['total'], 2) ?></td>
-                    <td><a href="cart.php?remove=<?= $index ?>">Remove</a></td>
+                    <td><?= number_format($item['total_price'], 2) ?></td>
+                        <td><a href="cart.php?remove=<?= $item['product_id']?>">Remove</a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -105,7 +115,9 @@ if (isset($_POST['place_order'])) {
     <h2>Total: <?= number_format($total, 2) ?></h2>
 
     <form method="POST">
-        <button type="submit" name="clear_cart">Clear Cart</button>
+        <button type="submit" name="clear_cart">Clear Cart</button></form>
+
+        <form method="POST" action="order_form.php">
         <button type="submit" name="place_order">Place Order</button>
     </form>
      <!-- Add More Products Button -->
