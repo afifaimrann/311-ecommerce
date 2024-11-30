@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2024 at 11:32 AM
+-- Generation Time: Nov 30, 2024 at 05:46 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -74,22 +74,54 @@ INSERT INTO `categories` (`id`, `name`, `description`, `created_at`) VALUES
 --
 
 CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `total_amount` decimal(10,2) NOT NULL,
   `shipping_address` text NOT NULL,
   `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` enum('Pending','Shipped','Delivered','Cancelled') DEFAULT 'Pending',
   `mail` varchar(50) NOT NULL,
-  `phone` int(15) NOT NULL,
-  `order_id` int(11) NOT NULL
+  `phone` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`user_id`, `total_amount`, `shipping_address`, `order_date`, `status`, `mail`, `phone`, `order_id`) VALUES
-(4, 380.00, 'abc', '2024-11-29 22:48:41', NULL, '01910523879', 0, 1);
+INSERT INTO `orders` (`id`, `user_id`, `total_amount`, `shipping_address`, `order_date`, `status`, `mail`, `phone`) VALUES
+(1, 4, 380.00, 'abc', '2024-11-29 22:48:41', NULL, '01910523879', 0),
+(2, 18, 1280.00, 'abc', '2024-11-30 16:03:54', 'Pending', 'imam.rakib@northsouth.edu', 1910523879),
+(3, 18, 1280.00, 'abc', '2024-11-30 16:17:41', 'Pending', 'imam.rakib@northsouth.edu', 1910523879),
+(4, 18, 100379.97, 'abc', '2024-11-30 16:20:23', 'Pending', 'imam.rakib@northsouth.edu', 1910523879),
+(5, 18, 520.00, 'abc', '2024-11-30 16:27:01', 'Pending', 'imam.rakib@northsouth.edu', 1910523879);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_details`
+--
+
+CREATE TABLE `payment_details` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `payment_method` enum('Credit Card','Debit Card','PayPal','Cash on Delivery') NOT NULL,
+  `payment_status` enum('Pending','Completed','Failed','Refunded') DEFAULT 'Pending',
+  `payment_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -157,7 +189,8 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `image`, `stock_qu
 (42, 'Almirah', 'Almirah is a piece of very essential and common furniture for the home.', 59999.99, 'almirah.png', 10, 3, '2024-11-30 04:00:00'),
 (43, 'Reading Table', 'Looking for a study table for students? Check out our collection.', 19999.99, 'RT.png', 30, 3, '2024-11-30 04:00:00'),
 (44, 'Hand Wash', 'Hand wash is a liquid shop that kills all germs and is fresh and fragrant', 19.99, 'handwash.png', 100, 2, '2024-11-30 04:00:00'),
-(45, 'Fountain Pen', 'Discover our collection of Luxury Fountain Pens', 199.99, 'fountainpen.png', 50, 7, '2024-11-30 04:00:00');
+(45, 'Fountain Pen', 'Discover our collection of Luxury Fountain Pens', 199.99, 'fountainpen.png', 50, 7, '2024-11-30 04:00:00'),
+(46, 'Dog Food', 'Amar Bazaar has a wide range of wet and dry foods with different quantities for your dogs', 1999.99, 'dogfood.png', 100, 6, '2024-11-30 04:00:00');
 
 -- --------------------------------------------------------
 
@@ -217,8 +250,23 @@ ALTER TABLE `categories`
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`order_id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- Indexes for table `payment_details`
+--
+ALTER TABLE `payment_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_id` (`order_id`);
 
 --
 -- Indexes for table `products`
@@ -257,13 +305,25 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `payment_details`
+--
+ALTER TABLE `payment_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -285,8 +345,20 @@ ALTER TABLE `users`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `FK_ID` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
+  ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+
+--
+-- Constraints for table `payment_details`
+--
+ALTER TABLE `payment_details`
+  ADD CONSTRAINT `payment_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
 
 --
 -- Constraints for table `products`
