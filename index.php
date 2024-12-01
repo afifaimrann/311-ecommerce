@@ -120,7 +120,8 @@ $cart_count = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
                     <p>Sell</p>
                 </div>
                 <div class="panel-deals border">
-                    Shop deals in Electronics
+                <a href="Garments.php?category_id=4">
+                   <p> Shop deals in Electronics <p> </a>
                 </div>
         
                 <div class="auth-buttons">
