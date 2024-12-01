@@ -137,28 +137,6 @@ $cart_count = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
         </div>
 
         <div class="shop-section">
-            <?php
-        if (isset($_GET['search'])) {
-            $search = mysqli_real_escape_string($conn, $_GET['search']);
-            $query = "SELECT * FROM products WHERE name LIKE '%$search%' OR description LIKE '%$search%'";
-            $result = $conn->query($query);
-
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo '<div class="box">';
-                    echo '<div class="box-content">';
-                    echo '<h2>' . htmlspecialchars($row['name']) . '</h2>';
-                    echo '<div class="box-img" style="background-image: url(\'' . htmlspecialchars($row['image_url']) . '\');"></div>';
-                    echo '<p>' . htmlspecialchars($row['description']) . '</p>';
-                    echo '<p>Price: ' . htmlspecialchars($row['price']) . '</p>';
-                    echo '</div>';
-                    echo '</div>';
-                }
-            } else {
-                echo '<p>No products found.</p>';
-            }
-        }
-        ?>
             <div class="box">
                 <div class="box-content">
                     <h2>Garments</h2>
